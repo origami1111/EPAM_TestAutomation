@@ -15,10 +15,7 @@ namespace Lesson1
         private By languageAreas = By.XPath("//code[contains(@class, 'language')]");
         private By languageTabs = By.XPath("//li[@class='nav-item']");
 
-        public DocumentationPage(WebDriver driver) : base(driver)
-        {
-
-        }
+        public DocumentationPage(WebDriver driver) : base(driver) { }
 
         public List<SupportedLanguage> GetListSupportedLanguages()
         {
@@ -40,34 +37,39 @@ namespace Lesson1
             return supportedLanguages;
         }
 
-        public bool IsDisplayedJavaLanguage()
+        public By GetJavaLanguageElement()
         {
-            return driver.FindElement(javaLanguage).Displayed;
+            return javaLanguage;
         }
 
-        public bool IsDisplayedPythonLanguage()
+        public By GetPythonLanguageElement()
         {
-            return driver.FindElement(pythonLanguage).Displayed;
+            return pythonLanguage;
         }
 
-        public bool IsDisplayedCSharpLanguage()
+        public By GetCSharpLanguageElement()
         {
-            return driver.FindElement(cSharpLanguage).Displayed;
+            return cSharpLanguage;
         }
 
-        public bool IsDisplayedRubyLanguage()
+        public By GetRubyLanguageElement()
         {
-            return driver.FindElement(rubyLanguage).Displayed;
+            return rubyLanguage;
         }
 
-        public bool IsDisplayedJavaScriptLanguage()
+        public By GetJavaScriptLanguageElement()
         {
-            return driver.FindElement(javaScriptLanguage).Displayed;
+            return javaScriptLanguage;
         }
 
-        public bool IsDisplayedKotlinLanguage()
+        public By GetKotlinLanguageElement()
         {
-            return driver.FindElement(kotlinLanguage).Displayed;
+            return kotlinLanguage;
+        }
+
+        public bool IsLanguageDisplayed(By language)
+        {
+            return driver.FindElement(language).Displayed;
         }
     }
 }

@@ -1,5 +1,16 @@
 ﻿using NUnit.Framework;
 
+/// <summary>
+/// Hometask:
+/// - Open https://www.selenium.dev ;​
+/// - Navigate to the documentation page;​
+/// - Check that samples for each supported language is present on a page 
+///   (Java, Python, C#, Ruby, JavaScript, Kotlin)​
+/// - Check supported languages and area with code a little bit down the page;​
+/// - Please, use Page Object pattern in your project.​
+/// 
+/// </summary>
+
 namespace Lesson1
 {
     [TestFixture]
@@ -22,12 +33,12 @@ namespace Lesson1
 
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(documentationPage.IsDisplayedJavaLanguage());
-                Assert.IsTrue(documentationPage.IsDisplayedCSharpLanguage());
-                Assert.IsTrue(documentationPage.IsDisplayedJavaScriptLanguage());
-                Assert.IsTrue(documentationPage.IsDisplayedKotlinLanguage());
-                Assert.IsTrue(documentationPage.IsDisplayedPythonLanguage());
-                Assert.IsTrue(documentationPage.IsDisplayedRubyLanguage());
+                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetJavaLanguageElement()));
+                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetCSharpLanguageElement()));
+                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetJavaScriptLanguageElement()));
+                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetKotlinLanguageElement()));
+                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetPythonLanguageElement()));
+                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetRubyLanguageElement()));
             });
         }
 
