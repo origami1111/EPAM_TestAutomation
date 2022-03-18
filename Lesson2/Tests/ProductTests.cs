@@ -34,7 +34,7 @@ namespace Lesson2.Tests
             Assert.Multiple(() =>
             {
                 Assert.IsTrue(productPage.GetProductTitle().ToLower().Contains(keyword));
-                Assert.IsTrue(GetEditedProductPrice(productPage.GetProductPrice()) <= price);
+                Assert.GreaterOrEqual(price, GetEditedProductPrice(productPage.GetProductPrice()));
             });
         }
 

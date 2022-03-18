@@ -1,75 +1,40 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace Lesson1
 {
     public class DocumentationPage : BasePage
     {
-        private By javaLanguage = By.XPath("//a[text()='Java']");
-        private By pythonLanguage = By.XPath("//a[text()='Python']");
-        private By cSharpLanguage = By.XPath("//a[text()='CSharp']");
-        private By rubyLanguage = By.XPath("//a[text()='Ruby']");
-        private By javaScriptLanguage = By.XPath("//a[text()='JavaScript']");
-        private By kotlinLanguage = By.XPath("//a[text()='Kotlin']");
-
-        private By languageAreas = By.XPath("//code[contains(@class, 'language')]");
-        private By languageTabs = By.XPath("//li[@class='nav-item']");
+        private By languageTabList = By.XPath("//li[@class='nav-item']/a");
+        private By codeAreaList = By.XPath("//code[contains(@class, 'language')]");
 
         public DocumentationPage(WebDriver driver) : base(driver) { }
 
-        public List<SupportedLanguage> GetListSupportedLanguages()
+        public bool IsLanguageTabDisplayed(string language)
         {
-            var languageTabElements = driver.FindElements(languageTabs);
-            var languageAreaElements = driver.FindElements(languageAreas);
-            var supportedLanguages = new List<SupportedLanguage>();
-
-            for (int i = 0; i < languageTabElements.Count; i++)
-            {
-                languageTabElements[i].Click();
-
-                supportedLanguages.Add(new SupportedLanguage
-                {
-                    LanguageTab = languageTabElements[i].Text,
-                    LanguageArea = languageAreaElements[i].GetAttribute("data-lang")
-                });
-            }
-
-            return supportedLanguages;
+            return GetLanguageTabElement(language).Displayed;
         }
 
-        public By GetJavaLanguageElement()
+        public void ClickLanguageTab(string language)
         {
-            return javaLanguage;
+            GetLanguageTabElement(language).Click();
         }
 
-        public By GetPythonLanguageElement()
+        public string GetCodeAreaText()
         {
-            return pythonLanguage;
+            return driver.FindElements(codeAreaList)
+                .Where(codeArea => codeArea.Displayed)
+                .Select(codeArea => codeArea.GetAttribute("data-lang"))
+                .First();
         }
 
-        public By GetCSharpLanguageElement()
+        private WebElement GetLanguageTabElement(string language)
         {
-            return cSharpLanguage;
+            return (WebElement)driver.FindElements(languageTabList)
+                .Where(languageTab => languageTab.Text == language)
+                .First();
+
         }
 
-        public By GetRubyLanguageElement()
-        {
-            return rubyLanguage;
-        }
-
-        public By GetJavaScriptLanguageElement()
-        {
-            return javaScriptLanguage;
-        }
-
-        public By GetKotlinLanguageElement()
-        {
-            return kotlinLanguage;
-        }
-
-        public bool IsLanguageDisplayed(By language)
-        {
-            return driver.FindElement(language).Displayed;
-        }
     }
 }

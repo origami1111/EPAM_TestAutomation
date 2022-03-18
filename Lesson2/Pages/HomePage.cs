@@ -5,7 +5,7 @@ namespace Lesson2
 {
     public class HomePage : BasePage
     {
-        private By languageLink = By.XPath("//div[@class='languages-0-2-42']/a");
+        private By languageLink = By.XPath("//div[contains(@class, 'languages')]/a");
         private By currentCityLink = By.XPath("//span[contains(@class, 'currentCity')]");
         private By popup = By.XPath("//div[contains(@class,'popup')]");
         private By citiesList = By.XPath("//ul[contains(@class, 'list')]/li/p");

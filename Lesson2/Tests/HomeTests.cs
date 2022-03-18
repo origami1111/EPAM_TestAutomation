@@ -16,13 +16,13 @@ namespace Lesson2
 
         // 2. Switch header theme to light/ city/ language and verify that it has been worked;​
         [TestCase("https://www.ctrs.com.ua/uk/")]
-        public void CheckThatSelectedUaLanguageIsPresent(string expectedResult)
+        public void CheckThatSelectedUaLanguageIsPresent(string expectedUrl)
         {
             homePage.ChangeLanguageToUa();
 
-            homePage.WaitUrlToBe(TimeSpan.FromSeconds(10), expectedResult);
+            homePage.WaitUrlToBe(TimeSpan.FromSeconds(10), expectedUrl);
 
-            Assert.IsTrue(driver.Url.Equals(expectedResult));
+            Assert.AreEqual(expectedUrl, driver.Url);
         }
 
         [TestCase("Днепр")]

@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
+using System.Threading;
 
 /// <summary>
 /// Hometask:
@@ -31,15 +33,10 @@ namespace Lesson1
         {
             homePage.ClickDocumentationLink();
 
-            Assert.Multiple(() =>
+            foreach (var language in LanguageCases())
             {
-                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetJavaLanguageElement()));
-                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetCSharpLanguageElement()));
-                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetJavaScriptLanguageElement()));
-                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetKotlinLanguageElement()));
-                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetPythonLanguageElement()));
-                Assert.IsTrue(documentationPage.IsLanguageDisplayed(documentationPage.GetRubyLanguageElement()));
-            });
+                Assert.IsTrue(documentationPage.IsLanguageTabDisplayed(language));
+            }
         }
 
         [Test]
@@ -47,10 +44,35 @@ namespace Lesson1
         {
             homePage.ClickDocumentationLink();
 
-            foreach (var supportedLanguage in documentationPage.GetListSupportedLanguages())
+            foreach (var supportedLanguage in LanguageAndCodeAreaCases())
             {
-                Assert.AreEqual(supportedLanguage.LanguageArea, supportedLanguage.LanguageTab);
+                documentationPage.ClickLanguageTab(supportedLanguage.LanguageTab);
+
+                Thread.Sleep(500);
+                Assert.AreEqual(supportedLanguage.LanguageArea, documentationPage.GetCodeAreaText());
             }
         }
+
+        private static IEnumerable<string> LanguageCases()
+        {
+            yield return "Kotlin";
+            yield return "JavaScript";
+            yield return "Ruby";
+            yield return "CSharp";
+            yield return "Python";
+            yield return "Java";
+        }
+
+        private static IEnumerable<SupportedLanguage> LanguageAndCodeAreaCases()
+        {
+            yield return new SupportedLanguage { LanguageTab = "Kotlin", LanguageArea = "kt" };
+            yield return new SupportedLanguage { LanguageTab = "JavaScript", LanguageArea = "js" };
+            yield return new SupportedLanguage { LanguageTab = "Ruby", LanguageArea = "rb" };
+            yield return new SupportedLanguage { LanguageTab = "CSharp", LanguageArea = "cs" };
+            yield return new SupportedLanguage { LanguageTab = "Python", LanguageArea = "py" };
+            yield return new SupportedLanguage { LanguageTab = "Java", LanguageArea = "java" };
+        }
+
     }
+
 }
