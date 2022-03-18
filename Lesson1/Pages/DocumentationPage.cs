@@ -6,9 +6,14 @@ namespace Lesson1
     public class DocumentationPage : BasePage
     {
         private By languageTabList = By.XPath("//li[@class='nav-item']/a");
-        private By codeAreaList = By.XPath("//code[contains(@class, 'language')]");
+        private By codeAreaActive = By.XPath("//div[@class='tab-pane fade active show']/div/div/pre/code");
 
         public DocumentationPage(WebDriver driver) : base(driver) { }
+
+        public string GetCodeAreaActiveAttributeText()
+        {
+            return driver.FindElement(codeAreaActive).GetAttribute("data-lang");
+        }
 
         public bool IsLanguageTabDisplayed(string language)
         {
@@ -18,14 +23,6 @@ namespace Lesson1
         public void ClickLanguageTab(string language)
         {
             GetLanguageTabElement(language).Click();
-        }
-
-        public string GetCodeAreaText()
-        {
-            return driver.FindElements(codeAreaList)
-                .Where(codeArea => codeArea.Displayed)
-                .Select(codeArea => codeArea.GetAttribute("data-lang"))
-                .First();
         }
 
         private WebElement GetLanguageTabElement(string language)

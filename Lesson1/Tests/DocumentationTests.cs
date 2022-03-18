@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
-using System.Threading;
 
 /// <summary>
 /// Hometask:
@@ -48,8 +47,7 @@ namespace Lesson1
             {
                 documentationPage.ClickLanguageTab(supportedLanguage.LanguageTab);
 
-                Thread.Sleep(500);
-                Assert.AreEqual(supportedLanguage.LanguageArea, documentationPage.GetCodeAreaText());
+                Assert.AreEqual(supportedLanguage.LanguageArea, documentationPage.GetCodeAreaActiveAttributeText());
             }
         }
 
