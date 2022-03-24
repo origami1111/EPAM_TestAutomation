@@ -30,19 +30,24 @@ namespace Lesson1
         [Test]
         public void CheckThatSamplesForEachSupportedLanguageIsPresentOnAPage()
         {
+            //TODO Verify name convention. It's better to rename (e.g GoToDocumentationPage)
             homePage.ClickDocumentationLink();
-
+            //TODO Add some method to verify if Documentation page is opened
+            
+            //TODO Call the method from Documentation class and and pass list as parameter
             foreach (var language in LanguageCases())
             {
                 Assert.IsTrue(documentationPage.IsLanguageTabDisplayed(language));
             }
         }
 
+        //TODO No need to use the second test attribute. Add to first one
         [Test]
         public void CheckSupportedLanguagesAndAreaWithCode()
         {
-            homePage.ClickDocumentationLink();
+            homePage.ClickDocumentationLink();//remove
 
+            //TODO Call the method from Documentation class and and pass list as parameter
             foreach (var supportedLanguage in LanguageAndCodeAreaCases())
             {
                 documentationPage.ClickLanguageTab(supportedLanguage.LanguageTab);
@@ -51,6 +56,7 @@ namespace Lesson1
             }
         }
 
+        //TODO Add all items to constants
         private static IEnumerable<string> LanguageCases()
         {
             yield return "Kotlin";
