@@ -28,53 +28,59 @@ namespace Lesson1
         }
 
         [Test]
-        public void CheckThatSamplesForEachSupportedLanguageIsPresentOnAPage()
+        public void CheckThatSamplesForEachSupportedLanguageAndCodeAreaIsPresentOnAPage()
         {
-            //TODO Verify name convention. It's better to rename (e.g GoToDocumentationPage)
-            homePage.ClickDocumentationLink();
-            //TODO Add some method to verify if Documentation page is opened
-            
-            //TODO Call the method from Documentation class and and pass list as parameter
-            foreach (var language in LanguageCases())
-            {
-                Assert.IsTrue(documentationPage.IsLanguageTabDisplayed(language));
-            }
+            homePage.GoToDocumentationPage();
+
+            documentationPage.VerifyDocumentationPageIsOpened();
+
+            documentationPage.VerifyAllLanguageTabDisplayed(LanguageCases());
+
+            documentationPage.VerifyAllLanguageTabAndCodeAreaDisplayed(LanguageAndCodeAreaCases());
         }
 
-        //TODO No need to use the second test attribute. Add to first one
-        [Test]
-        public void CheckSupportedLanguagesAndAreaWithCode()
-        {
-            homePage.ClickDocumentationLink();//remove
-
-            //TODO Call the method from Documentation class and and pass list as parameter
-            foreach (var supportedLanguage in LanguageAndCodeAreaCases())
-            {
-                documentationPage.ClickLanguageTab(supportedLanguage.LanguageTab);
-
-                Assert.AreEqual(supportedLanguage.LanguageArea, documentationPage.GetCodeAreaActiveAttributeText());
-            }
-        }
-
-        //TODO Add all items to constants
         private static IEnumerable<string> LanguageCases()
         {
-            yield return "Kotlin";
-            yield return "JavaScript";
-            yield return "Ruby";
-            yield return "CSharp";
-            yield return "Python";
-            yield return "Java";
+            yield return Constants.KotlinLanguageTab;
+            yield return Constants.JavaScriptLanguageTab;
+            yield return Constants.RubyLanguageTab;
+            yield return Constants.CSharpLanguageTab;
+            yield return Constants.PythonLanguageTab;
+            yield return Constants.JavaLanguageTab;
         }
 
         private static IEnumerable<SupportedLanguage> LanguageAndCodeAreaCases()
         {
-            yield return new SupportedLanguage { LanguageTab = "Kotlin", LanguageArea = "kt" };
-            yield return new SupportedLanguage { LanguageTab = "JavaScript", LanguageArea = "js" };
-            yield return new SupportedLanguage { LanguageTab = "Ruby", LanguageArea = "rb" };
-            yield return new SupportedLanguage { LanguageTab = "CSharp", LanguageArea = "cs" };
-            yield return new SupportedLanguage { LanguageTab = "Python", LanguageArea = "py" };
-            yield return new SupportedLanguage { LanguageTab = "Java", LanguageArea = "java" };
+            yield return new SupportedLanguage
+            {
+                LanguageTab = Constants.KotlinLanguageTab,
+                LanguageArea = Constants.KotlinLanguageArea
+            };
+            yield return new SupportedLanguage
+            {
+                LanguageTab = Constants.JavaScriptLanguageTab,
+                LanguageArea = Constants.JavaScriptLanguageArea
+            };
+            yield return new SupportedLanguage
+            {
+                LanguageTab = Constants.RubyLanguageTab,
+                LanguageArea = Constants.RubyLanguageArea
+            };
+            yield return new SupportedLanguage
+            {
+                LanguageTab = Constants.CSharpLanguageTab,
+                LanguageArea = Constants.CSharpLanguageArea
+            };
+            yield return new SupportedLanguage
+            {
+                LanguageTab = Constants.PythonLanguageTab,
+                LanguageArea = Constants.PythonLanguageArea
+            };
+            yield return new SupportedLanguage
+            {
+                LanguageTab = Constants.JavaLanguageTab,
+                LanguageArea = Constants.JavaLanguageArea
+            };
         }
 
     }

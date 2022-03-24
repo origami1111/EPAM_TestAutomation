@@ -1,30 +1,49 @@
-﻿using System.Linq;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Lesson1
 {
     public class DocumentationPage : BasePage
     {
-        //TODO Use "Contains" method in xpath
-        //Move to Main page
-        private By languageTabList = By.XPath("//li[@class='nav-item']/a");
+        private By languageTabList = By.XPath("//li[contains(@class,'nav-item')]/a");
 
-        //TODO Use shorter xpath
-        private By codeAreaActive = By.XPath("//div[@class='tab-pane fade active show']/div/div/pre/code");
+        private By documentationPage = By.XPath("//a[text()='Documentation']");
+
+        private By codeAreaActive = By.XPath("//div[@class='tab-pane fade active show']//code");
 
         public DocumentationPage(WebDriver driver) : base(driver)
         {
+
         }
 
-        public string GetCodeAreaActiveAttributeText()
+        public void VerifyDocumentationPageIsOpened(bool expected = true)
         {
-            return driver.FindElement(codeAreaActive).GetAttribute("data-lang");
+            bool actual = driver.FindElement(documentationPage).Displayed;
+
+            Assert.AreEqual(expected, actual, "Verify that documentation page is opened");
         }
 
-        //TODO Verify name convention. It's better to rename (e.g VerifyLanguageTabDisplayed)
-        public bool IsLanguageTabDisplayed(string language)
+        public void VerifyAllLanguageTabAndCodeAreaDisplayed(IEnumerable<SupportedLanguage> supportedLanguages, bool expected = true)
         {
-            return GetLanguageTabElement(language).Displayed;
+            bool actual = false;
+
+            foreach (var supportedLanguage in supportedLanguages)
+            {
+                ClickLanguageTab(supportedLanguage.LanguageTab);
+
+                actual = supportedLanguage.LanguageArea.Equals(GetCodeAreaActiveAttributeText());
+            }
+
+            Assert.AreEqual(expected, actual, "Verify that all language tab and code aread are displayed");
+        }
+
+        public void VerifyAllLanguageTabDisplayed(IEnumerable<string> languages, bool expected = true)
+        {
+            bool actual = languages.All(language => GetLanguageTabElement(language).Displayed);
+
+            Assert.AreEqual(expected, actual, "Verify that all language tab are displayed");
         }
 
         public void ClickLanguageTab(string language)
@@ -32,12 +51,15 @@ namespace Lesson1
             GetLanguageTabElement(language).Click();
         }
 
-//TODO Replace with single call to First(..)
+        private string GetCodeAreaActiveAttributeText()
+        {
+            return driver.FindElement(codeAreaActive).GetAttribute("data-lang");
+        }
+
         private WebElement GetLanguageTabElement(string language)
         {
-            return (WebElement) driver.FindElements(languageTabList)
-                .Where(languageTab => languageTab.Text == language)
-                .First();
+            return (WebElement)driver.FindElements(languageTabList)
+                .First(languageTab => languageTab.Text == language);
         }
     }
 }

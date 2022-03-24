@@ -11,7 +11,7 @@ namespace Lesson1
 
         }
 
-        public DocumentationPage ClickDocumentationLink()
+        public DocumentationPage GoToDocumentationPage()
         {
             driver.FindElement(documentationLink).Click();
 
