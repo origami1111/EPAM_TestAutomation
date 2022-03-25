@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System.Linq;
 
 namespace Lesson2
@@ -23,6 +24,45 @@ namespace Lesson2
 
         public ProductPage(WebDriver driver) : base(driver) { }
 
+        public void VerifyThatCartContainsTwoProducts(int expected)
+        {
+            int actual = GetAmountOfProductsInCart();
+
+            Assert.AreEqual(expected, actual, "Verify that cart contains two products");
+        }
+
+        public void VerifyThatPopupCartIsDisplayedAndContainsAppropriatedFields(string expected)
+        {
+            string actual = GetPopupProductContent().ToLower();
+
+            Assert.IsTrue(IsPopupDisplayed());
+            Assert.IsTrue(actual.Contains(expected), "Verify that popup cart is displayed and contains appropriated fields");
+        }
+
+        public void VerifyThatSelectedColorIsPresent(string expected)
+        {
+            string actual = GetProductTitle().ToLower();
+
+            Assert.IsTrue(actual.Contains(expected), "Verify that selected color is present");
+        }
+
+        public void VerifyThatFilteredProductsContainsKeywords(string expectedKeyword, int expectedPrice)
+        {
+            string actualKeyword = GetProductTitle().ToLower();
+            int actualPrice = GetEditedProductPrice(GetProductPrice());
+
+            Assert.IsTrue(actualKeyword.Contains(expectedKeyword), "Verify that filtered products contain keyword");
+            Assert.GreaterOrEqual(expectedPrice, actualPrice, "Verify that filtered products price is greater or equal");
+        }
+
+        private static int GetEditedProductPrice(string priceString)
+        {
+            string newPriceString = priceString.Replace("₴", "").Replace(" ", "");
+            return int.Parse(newPriceString);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+
         public By GetProductTitleElement()
         {
             return productTitle;
@@ -36,9 +76,11 @@ namespace Lesson2
                 .Click();
         }
 
-        public bool IsCartButtonDisabled()
+        public void VerifyThatCartButtonDisabled(bool expected = true)
         {
-            return driver.FindElement(cartButton).Enabled;
+            bool actual = driver.FindElement(cartButton).Enabled;
+
+            Assert.IsTrue(actual);
         }
 
         public void ClickConfirmDeleteProduct()

@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 
 namespace Lesson2
 {
@@ -14,29 +13,6 @@ namespace Lesson2
             homePage = new HomePage(driver);
         }
 
-        // 2. Switch header theme to light/ city/ language and verify that it has been worked;​
-        [TestCase("https://www.ctrs.com.ua/uk/")]
-        public void CheckThatSelectedUaLanguageIsPresent(string expectedUrl)
-        {
-            homePage.ChangeLanguageToUa();
-
-            homePage.WaitUrlToBe(TimeSpan.FromSeconds(10), expectedUrl);
-
-            Assert.AreEqual(expectedUrl, driver.Url);
-        }
-
-        [TestCase("Днепр")]
-        [TestCase("Харьков")]
-        public void CheckThatSelectedCityIsPresent(string city)
-        {
-            homePage.ClickCurrentCityLink();
-
-            homePage.WaitVisibilityOfElement(TimeSpan.FromSeconds(10), homePage.GetPopupLocator());
-            homePage.ChangeCityTo(city);
-
-            Assert.AreEqual(city, homePage.GetCurrentCityText());
-        }
-
         // negative test case
         [TestCase("")]
         public void CheckThatSubmitButtonDisabledWithBlankEmailField(string email)
@@ -45,7 +21,7 @@ namespace Lesson2
             homePage.ClickSignInByEmailButton();
             homePage.EnterTextToEmailInput(email);
 
-            Assert.IsTrue(homePage.IsSubmitButtonDisabled());
+            homePage.VerifyThatSubmitButtonDisabled();
         }
     }
 }

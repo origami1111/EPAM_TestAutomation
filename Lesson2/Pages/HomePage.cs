@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System.Linq;
 
 namespace Lesson2
@@ -19,6 +20,29 @@ namespace Lesson2
         private By submitButton = By.XPath("//button[@type='submit']");
 
         public HomePage(WebDriver driver) : base(driver) { }
+
+        public void VerifyThatSubmitButtonDisabled(bool expected = true)
+        {
+            bool actual = IsSubmitButtonDisabled();
+
+            Assert.IsTrue(actual, "Verify that submit button disabled");
+        }
+
+        public void VerifyThatSelectedCityIsPresent(string expected)
+        {
+            string actual = GetCurrentCityText();
+
+            Assert.AreEqual(expected, actual, "check that selected city is present");
+        }
+
+        public void VerifyThatSelectedUaLanguageIsPresent(string expected)
+        {
+            string actual = driver.Url;
+
+            Assert.AreEqual(expected, actual, "Verify that selected language is present");
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////
 
         public bool IsSubmitButtonDisabled()
         {

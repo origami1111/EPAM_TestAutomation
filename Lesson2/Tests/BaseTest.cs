@@ -20,7 +20,7 @@ namespace Lesson2
             driver.Navigate().GoToUrl("https://www.ctrs.com.ua/");
         }
 
-        public void Back()
+        public void NavigateBack()
         {
             driver.Navigate().Back();
         }

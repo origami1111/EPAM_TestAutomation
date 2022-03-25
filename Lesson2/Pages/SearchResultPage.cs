@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,18 @@ namespace Lesson2
         private By submitButton = By.XPath("//button[@type='submit']");
 
         public SearchResultPage(WebDriver driver) : base(driver) { }
+
+        public void VerifyThatSearchResultProductsContainsSearchKeyword(string expected)
+        {
+            foreach (var product in GetSearchResultProductsTextList())
+            {
+                string actual = product.ToLower();
+
+                Assert.IsTrue(actual.Contains(expected), "Verify that search result products contains search keyword");
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////
 
         public void SelectFirtsProductFromSearchResult()
         {
