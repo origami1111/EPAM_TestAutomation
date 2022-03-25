@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Linq;
 
 namespace Lesson2
 {
@@ -18,7 +19,7 @@ namespace Lesson2
         private By goToCartLink = By.XPath("//a[contains(@class, 'link-dashed')]");
         private By deleteProductFromCart = By.XPath("//div[contains(@class, 'linkBlock')]/div/div");
         private By confirmDeleteProduct = By.XPath("//button/span[text()='Да']");
-        private By cartButton = By.XPath("//div[contains(@class, 'basket')]/div/button");
+        private By cartButton = By.XPath("//div[contains(@class, 'basket')]//button");
 
         public ProductPage(WebDriver driver) : base(driver) { }
 
@@ -31,13 +32,8 @@ namespace Lesson2
         {
             var elements = driver.FindElements(productColorsList);
 
-            foreach (var element in elements)
-            {
-                if (element.GetAttribute("href").Contains(color))
-                {
-                    element.Click();
-                }
-            }
+            elements.First(el => el.GetAttribute("href").Contains(color))
+                .Click();
         }
 
         public bool IsCartButtonDisabled()
@@ -70,7 +66,7 @@ namespace Lesson2
             return int.Parse(driver.FindElement(amountOfProductsInCart).Text);
         }
 
-        public void ClickClosePopupButton()
+        public void ClickClosePopupButtonJs()
         {
             var element = driver.FindElement(closePopupButton);
 
@@ -93,7 +89,7 @@ namespace Lesson2
             return buyButton;
         }
 
-        public void ClickBuyButton()
+        public void ClickBuyButtonJs()
         {
             var element = driver.FindElement(buyButton);
 

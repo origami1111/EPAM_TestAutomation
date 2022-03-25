@@ -64,7 +64,7 @@ namespace Lesson2.Tests
             searchResultPage.SelectFirtsProductFromSearchResult();
 
             productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButton();
+            productPage.ClickBuyButtonJs();
 
             Assert.Multiple(() =>
             {
@@ -84,14 +84,14 @@ namespace Lesson2.Tests
             searchResultPage.SelectFirtsProductFromSearchResult();
 
             productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButton();
-            productPage.ClickClosePopupButton();
+            productPage.ClickBuyButtonJs();
+            productPage.ClickClosePopupButtonJs();
             Back();
 
             searchResultPage.SelectRandomProductFromSearchResult();
 
             productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButton();
+            productPage.ClickBuyButtonJs();
 
             Assert.Multiple(() =>
             {
@@ -110,15 +110,15 @@ namespace Lesson2.Tests
             searchResultPage.SelectFirtsProductFromSearchResult();
 
             productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButton();
-            productPage.ClickClosePopupButton();
+            productPage.ClickBuyButtonJs();
+            productPage.ClickClosePopupButtonJs();
             Back();
 
             searchResultPage.SelectRandomProductFromSearchResult();
 
             productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButton();
-            productPage.ClickClosePopupButton();
+            productPage.ClickBuyButtonJs();
+            productPage.ClickClosePopupButtonJs();
 
             productPage.WaitTextToBePresentInElement(TimeSpan.FromSeconds(10), productPage.GetAmountOfProductsInCartLocator(), expectedResult.ToString());
             Assert.AreEqual(expectedResult, productPage.GetAmountOfProductsInCart());
@@ -135,12 +135,12 @@ namespace Lesson2.Tests
             searchResultPage.SelectFirtsProductFromSearchResult();
 
             productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButton();
+            productPage.ClickBuyButtonJs();
 
             productPage.ClickGoToCartLink();
             productPage.ClickDeleteProductFromCart();
             productPage.ClickConfirmDeleteProduct();
-            productPage.ClickClosePopupButton();
+            productPage.ClickClosePopupButtonJs();
 
             Assert.IsTrue(productPage.IsCartButtonDisabled());
         }

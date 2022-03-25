@@ -8,7 +8,7 @@ namespace Lesson2
         private By languageLink = By.XPath("//div[contains(@class, 'languages')]/a");
         private By currentCityLink = By.XPath("//span[contains(@class, 'currentCity')]");
         private By popup = By.XPath("//div[contains(@class,'popup')]");
-        private By citiesList = By.XPath("//ul[contains(@class, 'list')]/li/p");
+        private By citiesList = By.XPath("//ul[contains(@class, 'list')]//p");
 
         private By searchInput = By.XPath("//input[@type='text']");
         private By searchDropList = By.XPath("//a[contains(@class,'search-drop-keywords')]");
@@ -59,8 +59,8 @@ namespace Lesson2
         {
             var cities = driver.FindElements(citiesList);
 
-            cities.Where(city => city.Text == cityName)
-                .First().Click();
+            cities.First(city => city.Text == cityName)
+                .Click();
         }
 
         public By GetPopupLocator()

@@ -8,7 +8,7 @@ namespace Lesson2
     public class SearchResultPage : BasePage
     {
         private By searchResultProductsTextList = By.XPath("//a[contains(@class, 'break-word')]");
-        private By filterPrice = By.XPath("//form[contains(@class, 'filterPrice')]/div/div/input");
+        private By filterPrice = By.XPath("//form[contains(@class, 'filterPrice')]//input");
         private By submitButton = By.XPath("//button[@type='submit']");
 
         public SearchResultPage(WebDriver driver) : base(driver) { }

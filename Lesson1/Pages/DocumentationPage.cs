@@ -36,7 +36,7 @@ namespace Lesson1
                 actual = supportedLanguage.LanguageArea.Equals(GetCodeAreaActiveAttributeText());
             }
 
-            Assert.AreEqual(expected, actual, "Verify that all language tab and code aread are displayed");
+            Assert.AreEqual(expected, actual, "Verify that all language tab and code area are displayed");
         }
 
         public void VerifyAllLanguageTabDisplayed(IEnumerable<string> languages, bool expected = true)
