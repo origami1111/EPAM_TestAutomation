@@ -21,7 +21,7 @@ Scenario Outline: Check that users above can be logged in
 	And user enter <login> on username field for login
 	And user enter <password> on password field for login
 	When user clicks on login button
-	Then user checks that he is logged in
+	Then user checks for successful log in
 
 	Examples: 
 	| login         | password |
@@ -32,7 +32,7 @@ Scenario Outline: Check that user can purchase products from different products 
 	Given user clicks <category> category
 	And user select first product from list
 	When user clicks on add to cart button
-	Then user checks he can purchase product
+	Then user checks possibility to purchase product
 
 	Examples: 
 	| category |

@@ -74,8 +74,8 @@ namespace Lesson9
             loginPage.ClickLoginButton();
         }
 
-        [Then(@"user checks that he is logged in")]
-        public void ThenUserChecksThatHeIsLoggerin()
+        [Then(@"user checks for successful log in")]
+        public void ThenUserChecksForSuccessfulLogin()
         {
             homePage.WaitVisibilityOfElement(TimeSpan.FromSeconds(5), homePage.GetUserNameLocator());
             homePage.VerifyThatUserLoggedIn(Constants.ExpectedSuccessfulText);
@@ -99,8 +99,8 @@ namespace Lesson9
             productPage.ClickAddToCartButton();
         }
 
-        [Then(@"user checks he can purchase product")]
-        public void ThenUserChecksThatHeCanPurchaseProduct()
+        [Then(@"user checks possibility to purchase product")]
+        public void ThenUserChecksPossibilityToPurchasePrdocut()
         {
             homePage.WaitAlertIsPresent(TimeSpan.FromSeconds(3));
             productPage.VerifyThatProductAdded(Constants.ExpectedProductAddedText);
