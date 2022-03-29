@@ -7,16 +7,14 @@ namespace Lesson9
     public class SmokeSteps
     {
         private HomePage homePage;
-        private SignUpPage signUpPage;
-        private LoginPage loginPage;
         private ProductPage productPage;
+        private PopupPage popupPage;
 
         public SmokeSteps(BrowserDriver browserDriver)
         {
             homePage = new HomePage(browserDriver.driver);
-            signUpPage = new SignUpPage(browserDriver.driver);
-            loginPage = new LoginPage(browserDriver.driver);
             productPage = new ProductPage(browserDriver.driver);
+            popupPage = new PopupPage(browserDriver.driver);
         }
 
         [Given(@"user clicks sign up link")]
@@ -28,26 +26,26 @@ namespace Lesson9
         [Given(@"user enter (.*) on username field for sign up")]
         public void GivenUserEnterUsernameOnUsernameFieldForSignUp(string username)
         {
-            signUpPage.EnterTextToUsernameField(username);
+            popupPage.EnterTextToUsernameField(popupPage.GetSignupUsernameField(), username);
         }
 
         [Given(@"user enter (.*) on password field for sign up")]
         public void GivenUserEnterPasswordOnPasswordFieldForSignUp(string password)
         {
-            signUpPage.EnterTextToPasswordField(password);
+            popupPage.EnterTextToPasswordField(popupPage.GetSignupPasswordField(), password);
         }
 
         [When(@"user clicks on sign up button")]
         public void WhenUserClicksOnSignUpButton()
         {
-            signUpPage.ClickSignUpButton();
+            popupPage.ClickSignUpButton();
         }
 
         [Then(@"user checks that sign up is successful")]
         public void ThenUserChecksThatSignUpIsSuccessful()
         {
             homePage.WaitAlertIsPresent(TimeSpan.FromSeconds(3));
-            signUpPage.VerifyThatSignUpIsSuccessful(Constants.ExpectedAlertMessage);
+            popupPage.VerifyThatSignUpIsSuccessful(Constants.ExpectedAlertMessage);
         }
 
         [Given(@"user clicks login link")]
@@ -59,19 +57,19 @@ namespace Lesson9
         [Given(@"user enter (.*) on username field for login")]
         public void GivenUserEnterUsernameOnUsernameFieldForLogin(string username)
         {
-            loginPage.EnterTextToUsernameField(username);
+            popupPage.EnterTextToUsernameField(popupPage.GetLoginUsernameField(), username);
         }
 
         [Given(@"user enter (.*) on password field for login")]
         public void GivenUserEnterPasswordOnPasswordFieldForLogin(string password)
         {
-            loginPage.EnterTextToPasswordField(password);
+            popupPage.EnterTextToPasswordField(popupPage.GetLoginPasswordField(), password);
         }
 
         [When(@"user clicks on login button")]
         public void WhenUserCkicksOnLoginButton()
         {
-            loginPage.ClickLoginButton();
+            popupPage.ClickLoginButton();
         }
 
         [Then(@"user checks for successful log in")]
