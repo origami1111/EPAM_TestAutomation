@@ -8,14 +8,11 @@ namespace Lesson1
     public class DocumentationPage : BasePage
     {
         private By languageTabList = By.XPath("//li[contains(@class,'nav-item')]/a");
-
         private By documentationPage = By.XPath("//a[text()='Documentation']");
-
         private By codeAreaActive = By.XPath("//div[@class='tab-pane fade active show']//code");
 
         public DocumentationPage(WebDriver driver) : base(driver)
         {
-
         }
 
         public void VerifyDocumentationPageIsOpened(bool expected = true)
@@ -25,7 +22,7 @@ namespace Lesson1
             Assert.AreEqual(expected, actual, "Verify that documentation page is opened");
         }
 
-        public void VerifyAllLanguageTabAndCodeAreaDisplayed(IEnumerable<SupportedLanguage> supportedLanguages, bool expected = true)
+        public void VerifyAllLanguageTabAndCodeAreaDisplayed(List<SupportedLanguage> supportedLanguages, bool expected = true)
         {
             bool actual = false;
 
@@ -39,7 +36,7 @@ namespace Lesson1
             Assert.AreEqual(expected, actual, "Verify that all language tab and code area are displayed");
         }
 
-        public void VerifyAllLanguageTabDisplayed(IEnumerable<string> languages, bool expected = true)
+        public void VerifyAllLanguageTabDisplayed(List<string> languages, bool expected = true)
         {
             bool actual = languages.All(language => GetLanguageTabElement(language).Displayed);
 

@@ -28,60 +28,60 @@ namespace Lesson1
         }
 
         [Test]
-        public void CheckThatSamplesForEachSupportedLanguageAndCodeAreaIsPresentOnAPage()
+        public void CheckThatSamplesForEachSupportedLanguageAndCodeAreaIsPresentOnPage()
         {
             homePage.GoToDocumentationPage();
 
             documentationPage.VerifyDocumentationPageIsOpened();
 
-            documentationPage.VerifyAllLanguageTabDisplayed(LanguageCases());
+            documentationPage.VerifyAllLanguageTabDisplayed(languageCases);
 
-            documentationPage.VerifyAllLanguageTabAndCodeAreaDisplayed(LanguageAndCodeAreaCases());
+            documentationPage.VerifyAllLanguageTabAndCodeAreaDisplayed(languageAndCodeAreaCases);
         }
 
-        private static IEnumerable<string> LanguageCases()
+        private List<string> languageCases = new List<string>
         {
-            yield return Constants.KotlinLanguageTab;
-            yield return Constants.JavaScriptLanguageTab;
-            yield return Constants.RubyLanguageTab;
-            yield return Constants.CSharpLanguageTab;
-            yield return Constants.PythonLanguageTab;
-            yield return Constants.JavaLanguageTab;
-        }
+            "Kotlin",
+            "JavaScript",
+            "Ruby",
+            "CSharp",
+            "Python",
+            "Java"
+        };
 
-        private static IEnumerable<SupportedLanguage> LanguageAndCodeAreaCases()
+        private List<SupportedLanguage> languageAndCodeAreaCases = new List<SupportedLanguage>
         {
-            yield return new SupportedLanguage
+            new SupportedLanguage
             {
-                LanguageTab = Constants.KotlinLanguageTab,
-                LanguageArea = Constants.KotlinLanguageArea
-            };
-            yield return new SupportedLanguage
+                LanguageTab = "Kotlin",
+                LanguageArea = "kt"
+            },
+            new SupportedLanguage
             {
-                LanguageTab = Constants.JavaScriptLanguageTab,
-                LanguageArea = Constants.JavaScriptLanguageArea
-            };
-            yield return new SupportedLanguage
+                LanguageTab = "JavaScript",
+                LanguageArea = "js"
+            },
+            new SupportedLanguage
             {
-                LanguageTab = Constants.RubyLanguageTab,
-                LanguageArea = Constants.RubyLanguageArea
-            };
-            yield return new SupportedLanguage
+                LanguageTab = "Ruby",
+                LanguageArea = "rb"
+            },
+            new SupportedLanguage
             {
-                LanguageTab = Constants.CSharpLanguageTab,
-                LanguageArea = Constants.CSharpLanguageArea
-            };
-            yield return new SupportedLanguage
+                LanguageTab = "CSharp",
+                LanguageArea = "cs"
+            },
+            new SupportedLanguage
             {
-                LanguageTab = Constants.PythonLanguageTab,
-                LanguageArea = Constants.PythonLanguageArea
-            };
-            yield return new SupportedLanguage
+                LanguageTab = "Python",
+                LanguageArea = "py"
+            },
+            new SupportedLanguage
             {
-                LanguageTab = Constants.JavaLanguageTab,
-                LanguageArea = Constants.JavaLanguageArea
-            };
-        }
+                LanguageTab = "Java",
+                LanguageArea = "java"
+            },
+        };
 
     }
 

@@ -98,7 +98,7 @@ namespace Lesson9
         }
 
         [Then(@"user checks possibility to purchase product")]
-        public void ThenUserChecksPossibilityToPurchasePrdocut()
+        public void ThenUserChecksPossibilityToPurchaseProduct()
         {
             homePage.WaitAlertIsPresent(TimeSpan.FromSeconds(3));
             productPage.VerifyThatProductAdded(Constants.ExpectedProductAddedText);

@@ -8,7 +8,6 @@ namespace Lesson1
 
         public HomePage(WebDriver driver) : base(driver)
         {
-
         }
 
         public DocumentationPage GoToDocumentationPage()
