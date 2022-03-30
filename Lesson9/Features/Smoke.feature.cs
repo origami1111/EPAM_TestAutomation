@@ -133,7 +133,8 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check that users above can be logged in")]
-        [NUnit.Framework.TestCaseAttribute("test28", "qwerty", null)]
+        [NUnit.Framework.TestCaseAttribute("!@#$%()(^&*()", "a", null)]
+        [NUnit.Framework.TestCaseAttribute("Ac", "123456", null)]
         public virtual void CheckThatUsersAboveCanBeLoggedIn(string login, string password, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -193,7 +194,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("category", category);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check that user can purchase products from different products categories (Phones/" +
                     "Laptops/Monitors)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 30
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -213,16 +214,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 31
+#line 32
  testRunner.Given(string.Format("user clicks {0} category", category), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 32
+#line 33
  testRunner.And("user select first product from list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 33
+#line 34
  testRunner.When("user clicks on add to cart button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 34
+#line 35
  testRunner.Then("user checks possibility to purchase product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

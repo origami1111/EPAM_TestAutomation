@@ -45,7 +45,7 @@ namespace Lesson9
         public void ThenUserChecksThatSignUpIsSuccessful()
         {
             homePage.WaitAlertIsPresent(TimeSpan.FromSeconds(3));
-            popupPage.VerifyThatSignUpIsSuccessful(Constants.ExpectedAlertMessage);
+            popupPage.VerifySignUpIsSuccessful(Constants.ExpectedAlertMessage);
         }
 
         [Given(@"user clicks login link")]
@@ -76,7 +76,7 @@ namespace Lesson9
         public void ThenUserChecksForSuccessfulLogin()
         {
             homePage.WaitVisibilityOfElement(TimeSpan.FromSeconds(5), homePage.GetUserNameLocator());
-            homePage.VerifyThatUserLoggedIn(Constants.ExpectedSuccessfulText);
+            homePage.VerifyUserLoggedIn(Constants.ExpectedSuccessfulText);
         }
 
         [Given(@"user clicks (.*) category")]
@@ -101,7 +101,7 @@ namespace Lesson9
         public void ThenUserChecksPossibilityToPurchaseProduct()
         {
             homePage.WaitAlertIsPresent(TimeSpan.FromSeconds(3));
-            productPage.VerifyThatProductAdded(Constants.ExpectedProductAddedText);
+            productPage.VerifyProductAdded(Constants.ExpectedProductAddedText);
         }
     }
 }

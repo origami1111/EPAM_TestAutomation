@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Linq;
+using Test;
 
 namespace Lesson2
 {
@@ -21,62 +22,55 @@ namespace Lesson2
 
         public HomePage(WebDriver driver) : base(driver) { }
 
-        public void VerifyThatSubmitButtonDisabled(bool expected = true)
+        public void VerifySubmitButtonDisabled(bool expected = true)
         {
-            bool actual = IsSubmitButtonDisabled();
+            bool actual = IsElementEnabled(submitButton);
 
-            Assert.IsTrue(actual, "Verify that submit button disabled");
+            Assert.AreEqual(expected, actual, "Verify that submit button disabled");
         }
 
-        public void VerifyThatSelectedCityIsPresent(string expected)
+        public void VerifySelectedCityDisplayed(string expected)
         {
-            string actual = GetCurrentCityText();
+            string actual = GetElementText(currentCityLink);
 
-            Assert.AreEqual(expected, actual, "check that selected city is present");
+            Assert.AreEqual(expected, actual, "Verify that selected city is displayed");
         }
 
-        public void VerifyThatSelectedUaLanguageIsPresent(string expected)
+        public void VerifySelectedUaLanguageDisplayed(string expected)
         {
             string actual = driver.Url;
 
-            Assert.AreEqual(expected, actual, "Verify that selected language is present");
+            Assert.AreEqual(expected, actual, "Verify that selected language is displayed");
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////
-
-        public bool IsSubmitButtonDisabled()
-        {
-            return driver.FindElement(submitButton).Enabled;
-        }
-
-        public void EnterTextToEmailInput(string email)
+        public HomePage EnterTextToEmailInput(string email)
         {
             driver.FindElement(emailInput).SendKeys(email);
+            return this;
         }
 
-        public void ClickSignInByEmailButton()
+        public HomePage ClickSignInByEmailButton()
         {
-            driver.FindElement(signInByEmailButton).Click();
+            ClickElement(signInByEmailButton);
+            return this;
         }
 
-        public void ClickAccountButton()
+        public HomePage ClickAccountButton()
         {
-            driver.FindElement(accountButton).Click();
+            ClickElement(accountButton);
+            return this;
         }
 
-        public void SelectFirtsItemFromSearchDropList()
+        public HomePage SelectFirtsItemFromSearchDropList()
         {
             driver.FindElements(searchDropList).First().Click();
+            return this;
         }
 
-        public void EnterTextToSearchInput(string keyword)
+        public HomePage EnterTextToSearchInput(string keyword)
         {
             driver.FindElement(searchInput).SendKeys(keyword);
-        }
-
-        public string GetCurrentCityText()
-        {
-            return driver.FindElement(currentCityLink).Text;
+            return this;
         }
 
         public void ChangeCityTo(string cityName)
@@ -94,12 +88,12 @@ namespace Lesson2
 
         public void ChangeLanguageToUa()
         {
-            driver.FindElement(languageLink).Click();
+            ClickElement(languageLink);
         }
 
         public void ClickCurrentCityLink()
         {
-            driver.FindElement(currentCityLink).Click();
+            ClickElement(currentCityLink);
         }
 
     }

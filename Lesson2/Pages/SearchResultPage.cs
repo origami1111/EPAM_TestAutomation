@@ -3,18 +3,20 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Test;
 
 namespace Lesson2
 {
     public class SearchResultPage : BasePage
     {
         private By searchResultProductsTextList = By.XPath("//a[contains(@class, 'break-word')]");
+
         private By filterPrice = By.XPath("//form[contains(@class, 'filterPrice')]//input");
         private By submitButton = By.XPath("//button[@type='submit']");
 
         public SearchResultPage(WebDriver driver) : base(driver) { }
 
-        public void VerifyThatSearchResultProductsContainsSearchKeyword(string expected)
+        public void VerifySearchResultProductsContainsSearchKeyword(string expected)
         {
             foreach (var product in GetSearchResultProductsTextList())
             {
@@ -23,8 +25,6 @@ namespace Lesson2
                 Assert.IsTrue(actual.Contains(expected), "Verify that search result products contains search keyword");
             }
         }
-
-        ////////////////////////////////////////////////////////////////////////////////////////
 
         public void SelectFirtsProductFromSearchResult()
         {
@@ -40,17 +40,20 @@ namespace Lesson2
                 .ElementAt(rand.Next(0, driver.FindElements(searchResultProductsTextList).Count)).Click();
         }
 
-        public void ClickSubmitButton()
+        public SearchResultPage ClickSubmitButton()
         {
-            driver.FindElement(submitButton).Click();
+            ClickElement(submitButton);
+            return this;
         }
 
-        public void SetFilterPriceRangeToField(int price)
+        public SearchResultPage SetFilterPriceRangeToField(int price)
         {
             var field = driver.FindElements(filterPrice).Last();
 
             field.Clear();
             field.SendKeys(price.ToString());
+
+            return this;
         }
 
         public List<string> GetSearchResultProductsTextList()

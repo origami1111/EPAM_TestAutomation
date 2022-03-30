@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
+using Test;
 
 namespace Lesson1
 {
@@ -15,9 +16,9 @@ namespace Lesson1
         {
         }
 
-        public void VerifyDocumentationPageIsOpened(bool expected = true)
+        public void VerifyDocumentationPageOpened(bool expected = true)
         {
-            bool actual = driver.FindElement(documentationPage).Displayed;
+            bool actual = IsElementDisplayed(documentationPage);
 
             Assert.AreEqual(expected, actual, "Verify that documentation page is opened");
         }
@@ -50,7 +51,8 @@ namespace Lesson1
 
         private string GetCodeAreaActiveAttributeText()
         {
-            return driver.FindElement(codeAreaActive).GetAttribute("data-lang");
+            return driver.FindElement(codeAreaActive)
+                .GetAttribute("data-lang");
         }
 
         private WebElement GetLanguageTabElement(string language)

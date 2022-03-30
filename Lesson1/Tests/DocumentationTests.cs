@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using Test;
 
 /// <summary>
 /// Hometask:
@@ -21,18 +22,19 @@ namespace Lesson1
         private DocumentationPage documentationPage;
 
         [SetUp]
-        public void SetupPage()
+        public new void SetUp()
         {
+            driver.Navigate().GoToUrl("https://www.selenium.dev/");
             homePage = new HomePage(driver);
             documentationPage = new DocumentationPage(driver);
         }
 
         [Test]
-        public void CheckThatSamplesForEachSupportedLanguageAndCodeAreaIsPresentOnPage()
+        public void CheckSamplesForEachSupportedLanguageAndCodeAreaPresentOnPage()
         {
             homePage.GoToDocumentationPage();
 
-            documentationPage.VerifyDocumentationPageIsOpened();
+            documentationPage.VerifyDocumentationPageOpened();
 
             documentationPage.VerifyAllLanguageTabDisplayed(languageCases);
 

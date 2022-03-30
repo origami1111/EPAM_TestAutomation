@@ -10,8 +10,9 @@ namespace Lesson8
 
         protected void InitDriver()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--no-sandbox", "start-maximized", "--incognito");
+            driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl(Constants.SiteUrl);
 

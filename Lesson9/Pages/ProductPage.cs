@@ -16,7 +16,7 @@ namespace Lesson9
             driver.FindElement(addToCartButton).Click();
         }
 
-        public void VerifyThatProductAdded(string expected)
+        public void VerifyProductAdded(string expected)
         {
             string actual = driver.SwitchTo().Alert().Text;
 

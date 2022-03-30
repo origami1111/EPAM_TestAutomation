@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System.Linq;
+using Test;
 
 namespace Lesson2
 {
@@ -22,34 +23,35 @@ namespace Lesson2
         private By confirmDeleteProduct = By.XPath("//button/span[text()='Да']");
         private By cartButton = By.XPath("//div[contains(@class, 'basket')]//button");
 
-        public ProductPage(WebDriver driver) : base(driver) { }
+        public ProductPage(WebDriver driver) : base(driver)
+        {
+        }
 
-        public void VerifyThatCartContainsTwoProducts(int expected)
+        public void VerifyCartContainsTwoProducts(int expected)
         {
             int actual = GetAmountOfProductsInCart();
 
             Assert.AreEqual(expected, actual, "Verify that cart contains two products");
         }
 
-        public void VerifyThatPopupCartIsDisplayedAndContainsAppropriatedFields(string expected)
+        public void VerifyPopupCartContainsAppropriatedFields(string expected)
         {
-            string actual = GetPopupProductContent().ToLower();
+            string actual = GetElementText(popupProductContent).ToLower();
 
-            Assert.IsTrue(IsPopupDisplayed());
-            Assert.IsTrue(actual.Contains(expected), "Verify that popup cart is displayed and contains appropriated fields");
+            Assert.IsTrue(actual.Contains(expected), "Verify that popup cart contains appropriated fields");
         }
 
-        public void VerifyThatSelectedColorIsPresent(string expected)
+        public void VerifySelectedColorDisplayed(string expected)
         {
             string actual = GetProductTitle().ToLower();
 
-            Assert.IsTrue(actual.Contains(expected), "Verify that selected color is present");
+            Assert.IsTrue(actual.Contains(expected), "Verify that selected color is displayed");
         }
 
-        public void VerifyThatFilteredProductsContainsKeywords(string expectedKeyword, int expectedPrice)
+        public void VerifyFilteredProductsContainsKeywords(string expectedKeyword, int expectedPrice)
         {
             string actualKeyword = GetProductTitle().ToLower();
-            int actualPrice = GetEditedProductPrice(GetProductPrice());
+            int actualPrice = GetEditedProductPrice(GetElementText(productPrice));
 
             Assert.IsTrue(actualKeyword.Contains(expectedKeyword), "Verify that filtered products contain keyword");
             Assert.GreaterOrEqual(expectedPrice, actualPrice, "Verify that filtered products price is greater or equal");
@@ -61,41 +63,46 @@ namespace Lesson2
             return int.Parse(newPriceString);
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////
-
-        public By GetProductTitleElement()
-        {
-            return productTitle;
-        }
-
-        public void SelectProductColor(string color)
+        public ProductPage SelectProductColor(string color)
         {
             var elements = driver.FindElements(productColorsList);
 
             elements.First(el => el.GetAttribute("href").Contains(color))
                 .Click();
+
+            return this;
         }
 
-        public void VerifyThatCartButtonDisabled(bool expected = true)
+        public void VerifyPopupCartDisplayed(bool expected = true)
         {
-            bool actual = driver.FindElement(cartButton).Enabled;
+            bool actual = IsElementDisplayed(popup);
 
-            Assert.IsTrue(actual);
+            Assert.AreEqual(expected, actual, "Verify that popup cart is displayed");
         }
 
-        public void ClickConfirmDeleteProduct()
+        public void VerifyCartButtonDisabled(bool expected = true)
         {
-            driver.FindElement(confirmDeleteProduct).Click();
+            bool actual = IsElementEnabled(cartButton);
+
+            Assert.AreEqual(expected, actual, "Verify that cart button disabled");
         }
 
-        public void ClickDeleteProductFromCart()
+        public ProductPage ClickConfirmDeleteProduct()
         {
-            driver.FindElement(deleteProductFromCart).Click();
+            ClickElement(confirmDeleteProduct);
+            return this;
         }
 
-        public void ClickGoToCartLink()
+        public ProductPage ClickDeleteProductFromCart()
         {
-            driver.FindElement(goToCartLink).Click();
+            ClickElement(deleteProductFromCart);
+            return this;
+        }
+
+        public ProductPage ClickGoToCartLink()
+        {
+            ClickElement(goToCartLink);
+            return this;
         }
 
         public By GetAmountOfProductsInCartLocator()
@@ -103,27 +110,9 @@ namespace Lesson2
             return amountOfProductsInCart;
         }
 
-        public int GetAmountOfProductsInCart()
+        public By GetProductTitleElement()
         {
-            return int.Parse(driver.FindElement(amountOfProductsInCart).Text);
-        }
-
-        public void ClickClosePopupButtonJs()
-        {
-            var element = driver.FindElement(closePopupButton);
-
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].click();", element);
-        }
-
-        public string GetPopupProductContent()
-        {
-            return driver.FindElement(popupProductContent).Text;
-        }
-
-        public bool IsPopupDisplayed()
-        {
-            return driver.FindElement(popup).Displayed;
+            return productTitle;
         }
 
         public By GetBuyButtonLocator()
@@ -131,22 +120,27 @@ namespace Lesson2
             return buyButton;
         }
 
-        public void ClickBuyButtonJs()
+        public int GetAmountOfProductsInCart()
         {
-            var element = driver.FindElement(buyButton);
-
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].click();", element);
-        }
-
-        public string GetProductPrice()
-        {
-            return driver.FindElement(productPrice).Text;
+            return int.Parse(GetElementText(amountOfProductsInCart));
         }
 
         public string GetProductTitle()
         {
-            return driver.FindElement(productTitle).Text;
+            return GetElementText(productTitle);
         }
+
+        public ProductPage ClickClosePopupButton()
+        {
+            ClickElementByJs(closePopupButton);
+            return this;
+        }
+
+        public ProductPage ClickBuyButton()
+        {
+            ClickElementByJs(buyButton);
+            return this;
+        }
+
     }
 }

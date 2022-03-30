@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Test;
 
 namespace Lesson2
 {
@@ -8,20 +9,20 @@ namespace Lesson2
         private HomePage homePage;
 
         [SetUp]
-        public void SetupPage()
+        public new void SetUp()
         {
+            driver.Navigate().GoToUrl("https://www.ctrs.com.ua/");
             homePage = new HomePage(driver);
         }
 
         // negative test case
-        [TestCase("")]
-        public void CheckThatSubmitButtonDisabledWithBlankEmailField(string email)
+        [Test]
+        public void CheckSubmitButtonDisabledWithBlankEmailField()
         {
-            homePage.ClickAccountButton();
-            homePage.ClickSignInByEmailButton();
-            homePage.EnterTextToEmailInput(email);
-
-            homePage.VerifyThatSubmitButtonDisabled();
+            homePage.ClickAccountButton()
+                .ClickSignInByEmailButton()
+                .EnterTextToEmailInput(string.Empty)
+                .VerifySubmitButtonDisabled();
         }
     }
 }

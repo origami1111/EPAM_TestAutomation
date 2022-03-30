@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
+using Test;
 
 namespace Lesson2.Tests
 {
@@ -11,8 +11,9 @@ namespace Lesson2.Tests
         private ProductPage productPage;
 
         [SetUp]
-        public void SetupPage()
+        public new void SetUp()
         {
+            driver.Navigate().GoToUrl("https://www.ctrs.com.ua/");
             homePage = new HomePage(driver);
             searchResultPage = new SearchResultPage(driver);
             productPage = new ProductPage(driver);
@@ -20,23 +21,21 @@ namespace Lesson2.Tests
 
         // Negative test case
         // When a user removes all items from the cart, cart is disabled
-        [TestCase("iphone")]
-        public void CheckThatCartIsDisabledAfterRemovesProductsFromCart(string keyword)
+        [Test]
+        public void CheckCartDisabledAfterRemovesProductsFromCart()
         {
-            homePage.EnterTextToSearchInput(keyword);
-            homePage.SelectFirtsItemFromSearchDropList();
+            homePage.EnterTextToSearchInput(Constants.ExpectedKeyword)
+                .SelectFirtsItemFromSearchDropList();
 
             searchResultPage.SelectFirtsProductFromSearchResult();
 
-            productPage.WaitElementExists(TimeSpan.FromSeconds(10), productPage.GetBuyButtonLocator());
-            productPage.ClickBuyButtonJs();
-
-            productPage.ClickGoToCartLink();
-            productPage.ClickDeleteProductFromCart();
-            productPage.ClickConfirmDeleteProduct();
-            productPage.ClickClosePopupButtonJs();
-
-            productPage.VerifyThatCartButtonDisabled();
+            productPage.WaitElementExists(productPage.GetBuyButtonLocator());
+            productPage.ClickBuyButton()
+                .ClickGoToCartLink()
+                .ClickDeleteProductFromCart()
+                .ClickConfirmDeleteProduct()
+                .ClickClosePopupButton()
+                .VerifyCartButtonDisabled();
         }
 
     }

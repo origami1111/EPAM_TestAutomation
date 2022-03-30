@@ -13,7 +13,7 @@ namespace Lesson8
         [Fact]
         public void CheckThatLogoIsPresent()
         {
-            Assert.True(homePage.IsLogoPresent());
+            Assert.True(homePage.IsLogoDisplayed());
         }
 
         [Theory]

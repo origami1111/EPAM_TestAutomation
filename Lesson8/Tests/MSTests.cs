@@ -14,7 +14,7 @@ namespace Lesson8
         [TestMethod]
         public void CheckThatLogoIsPresent()
         {
-            Assert.IsTrue(homePage.IsLogoPresent());
+            Assert.IsTrue(homePage.IsLogoDisplayed());
         }
 
         [TestMethod]

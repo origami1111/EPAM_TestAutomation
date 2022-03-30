@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System.Linq;
+using Test;
 
 namespace Lesson8
 {
@@ -10,9 +11,9 @@ namespace Lesson8
 
         public HomePage(WebDriver driver) : base(driver) { }
 
-        public bool IsLogoPresent()
+        public bool IsLogoDisplayed()
         {
-            return driver.FindElement(logo).Displayed;
+            return IsElementDisplayed(logo);
         }
 
         public bool IsTableOfContentsContainsContent(string content)

@@ -37,7 +37,7 @@ namespace Lesson9
             return loginUsernameField;
         }
 
-        public void VerifyThatSignUpIsSuccessful(string expected)
+        public void VerifySignUpIsSuccessful(string expected)
         {
             string actual = driver.SwitchTo().Alert().Text;
 

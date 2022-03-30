@@ -10,8 +10,9 @@ namespace Lesson9
 
         public BrowserDriver()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            ChromeOptions options = new ChromeOptions();
+            driver = new ChromeDriver(options);
+            options.AddArguments("--no-sandbox", "start-maximized", "--incognito");
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
             driver.Navigate().GoToUrl("https://www.demoblaze.com/index.html");

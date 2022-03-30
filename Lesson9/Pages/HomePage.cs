@@ -39,7 +39,7 @@ namespace Lesson9
             return userName;
         }
 
-        public void VerifyThatUserLoggedIn(string expected)
+        public void VerifyUserLoggedIn(string expected)
         {
             string actual = GetUserNameText();
 

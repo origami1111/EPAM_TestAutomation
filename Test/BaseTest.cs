@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 
-namespace Lesson1
+namespace Test
 {
     [SetUpFixture]
     public abstract class BaseTest
@@ -13,10 +13,15 @@ namespace Lesson1
         [SetUp]
         public void SetUp()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--no-sandbox", "start-maximized", "--incognito");
+            driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-            driver.Navigate().GoToUrl("https://www.selenium.dev/");
+        }
+
+        public void NavigateBack()
+        {
+            driver.Navigate().Back();
         }
 
         [TearDown]
