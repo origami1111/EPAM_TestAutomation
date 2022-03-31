@@ -12,13 +12,13 @@ namespace Lesson8
         }
 
         [Test]
-        public void CheckThatLogoIsPresent()
+        public void CheckIsLogoDisplayed()
         {
             Assert.IsTrue(homePage.IsLogoDisplayed());
         }
 
         [TestCase("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        public void CheckTableOfContentsSectionContent(string content)
         {
             Assert.IsTrue(homePage.IsTableOfContentsContainsContent(content));
         }

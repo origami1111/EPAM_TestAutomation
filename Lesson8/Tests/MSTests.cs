@@ -12,14 +12,14 @@ namespace Lesson8
         }
 
         [TestMethod]
-        public void CheckThatLogoIsPresent()
+        public void CheckIsLogoDisplayed()
         {
             Assert.IsTrue(homePage.IsLogoDisplayed());
         }
 
         [TestMethod]
         [DataRow("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        public void CheckTableOfContentsSectionContent(string content)
         {
             Assert.IsTrue(homePage.IsTableOfContentsContainsContent(content));
         }

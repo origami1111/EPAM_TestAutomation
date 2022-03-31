@@ -1,20 +1,20 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using Pages.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Test;
 
-namespace Lesson2
+namespace Pages.Pages.Lesson2Pages
 {
     public class SearchResultPage : BasePage
     {
         private By searchResultProductsTextList = By.XPath("//a[contains(@class, 'break-word')]");
-
         private By filterPrice = By.XPath("//form[contains(@class, 'filterPrice')]//input");
-        private By submitButton = By.XPath("//button[@type='submit']");
 
-        public SearchResultPage(WebDriver driver) : base(driver) { }
+        public Button submitButton => FindControl<Button>(By.XPath("//button[@type='submit']"));
+
+        public SearchResultPage(IWebDriver driver) : base(driver) { }
 
         public void VerifySearchResultProductsContainsSearchKeyword(string expected)
         {
@@ -42,7 +42,7 @@ namespace Lesson2
 
         public SearchResultPage ClickSubmitButton()
         {
-            ClickElement(submitButton);
+            submitButton.Click();
             return this;
         }
 

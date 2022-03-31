@@ -16,7 +16,7 @@ namespace Lesson7
         /// </summary>
 
         [Test]
-        public void ValidateThatThereArePersonsWhoBoughtCarsNOTInTheirHomeCity()
+        public void ValidateThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
             var result = new DapperHelper().IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity();
 
@@ -24,7 +24,7 @@ namespace Lesson7
         }
 
         [Test]
-        public void ValidateThatAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear()
+        public void ValidateAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear()
         {
             var result = new DapperHelper().IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear();
 
@@ -32,7 +32,7 @@ namespace Lesson7
         }
 
         [Test]
-        public void ValidateThatAllPersonsBoughtCars()
+        public void ValidateAllPersonsBoughtCars()
         {
             var result = new DapperHelper().IsAllPersonsBoughtCars();
 

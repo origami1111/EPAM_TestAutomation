@@ -1,4 +1,4 @@
-﻿namespace Lesson1
+﻿namespace Pages.Entities
 {
     public class SupportedLanguage
     {

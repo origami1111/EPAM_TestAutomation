@@ -1,37 +1,36 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using Pages.Controls;
 using System.Linq;
-using Test;
 
-namespace Lesson2
+namespace Pages.Pages.Lesson2Pages
 {
     public class HomePage : BasePage
     {
-        private By languageLink = By.XPath("//div[contains(@class, 'languages')]/a");
-        private By currentCityLink = By.XPath("//span[contains(@class, 'currentCity')]");
-        private By popup = By.XPath("//div[contains(@class,'popup')]");
         private By citiesList = By.XPath("//ul[contains(@class, 'list')]//p");
-
-        private By searchInput = By.XPath("//input[@type='text']");
+        private By popup = By.XPath("//div[contains(@class,'popup')]");
         private By searchDropList = By.XPath("//a[contains(@class,'search-drop-keywords')]");
 
-        private By accountButton = By.XPath("//button[contains(@class, 'account')]");
-        private By signInByEmailButton = By.XPath("//button/span[text()='Войти по email']");
-        private By emailInput = By.XPath("//input[@name='email']");
-        private By submitButton = By.XPath("//button[@type='submit']");
+        public Link languageLink => FindControl<Link>(By.XPath("//div[contains(@class, 'languages')]/a"));
+        public Link currentCityLink => FindControl<Link>(By.XPath("//span[contains(@class, 'currentCity')]"));
+        public Search inputSearch => FindControl<Search>(By.XPath("//input[@type='text']"));
+        public Button accountButton => FindControl<Button>(By.XPath("//button[contains(@class, 'account')]"));
+        public Button submitButton => FindControl<Button>(By.XPath("//button[@type='submit']"));
+        public Button signInByEmailButton => FindControl<Button>(By.XPath("//button/span[text()='Войти по email']"));
+        public TextField emailTextField => FindControl<TextField>(By.XPath("//input[@name='email']"));
 
-        public HomePage(WebDriver driver) : base(driver) { }
+        public HomePage(IWebDriver driver) : base(driver) { }
 
         public void VerifySubmitButtonDisabled(bool expected = true)
         {
-            bool actual = IsElementEnabled(submitButton);
+            bool actual = submitButton.IsEnabled();
 
             Assert.AreEqual(expected, actual, "Verify that submit button disabled");
         }
 
         public void VerifySelectedCityDisplayed(string expected)
         {
-            string actual = GetElementText(currentCityLink);
+            string actual = currentCityLink.GetText();
 
             Assert.AreEqual(expected, actual, "Verify that selected city is displayed");
         }
@@ -45,19 +44,19 @@ namespace Lesson2
 
         public HomePage EnterTextToEmailInput(string email)
         {
-            driver.FindElement(emailInput).SendKeys(email);
+            emailTextField.EnterText(email);
             return this;
         }
 
         public HomePage ClickSignInByEmailButton()
         {
-            ClickElement(signInByEmailButton);
+            signInByEmailButton.Click();
             return this;
         }
 
         public HomePage ClickAccountButton()
         {
-            ClickElement(accountButton);
+            accountButton.Click();
             return this;
         }
 
@@ -69,7 +68,7 @@ namespace Lesson2
 
         public HomePage EnterTextToSearchInput(string keyword)
         {
-            driver.FindElement(searchInput).SendKeys(keyword);
+            inputSearch.EnterText(keyword);
             return this;
         }
 
@@ -88,12 +87,12 @@ namespace Lesson2
 
         public void ChangeLanguageToUa()
         {
-            ClickElement(languageLink);
+            languageLink.Click();
         }
 
         public void ClickCurrentCityLink()
         {
-            ClickElement(currentCityLink);
+            currentCityLink.Click();
         }
 
     }

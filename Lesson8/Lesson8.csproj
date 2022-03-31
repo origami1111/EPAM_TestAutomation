@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TestAutomation\Pages.csproj" />
     <ProjectReference Include="..\Test\Test.csproj" />
   </ItemGroup>
 

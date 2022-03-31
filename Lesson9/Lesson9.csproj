@@ -22,4 +22,8 @@
     <Folder Include="Hooks\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tests\Tests.csproj" />
+  </ItemGroup>
+
 </Project>

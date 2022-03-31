@@ -1,4 +1,4 @@
-﻿namespace Lesson2
+﻿namespace Pages.Entities
 {
     public class Constants
     {

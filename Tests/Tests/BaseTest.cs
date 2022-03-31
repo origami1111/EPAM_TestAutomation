@@ -3,12 +3,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 
-namespace Test
+namespace Tests.Tests
 {
     [SetUpFixture]
     public abstract class BaseTest
     {
-        protected WebDriver driver;
+        protected IWebDriver driver;
 
         [SetUp]
         public void SetUp()

@@ -1,10 +1,34 @@
 ﻿using NUnit.Framework;
-using Test;
+using Pages.Entities;
+using Pages.Pages.Lesson2Pages;
 
-namespace Lesson2.Tests
+namespace Tests.Tests
 {
+
+    /// <summary>
+    /// Lesson 2:
+    /// Implement several auto tests (positive, negative) according to this scenario:​
+    /// 1. Go to https://allo.ua/ru/ ;​
+    /// 2. Switch header theme to light/ city/ language and verify that it has been worked;​
+    /// 3. Enter 2 appropriated letters in the search bar, for example, “lg” and select the first item of the popup list;​
+    /// 4. Verify that items list for first page contains elements with appropriate title;​
+    /// 5. Filter items(price, manufacturer, discount);​
+    /// 6. Click on first element and verify headers and description;​
+    /// 7. Choose the color of device and verify that it has been changed;​
+    /// 8. Click on button ‘Buy’ and verify that popup is displayed and contains all appropriated fields;​
+    /// 9. Return to the items search and choose another product;​
+    /// 10. Click on button ‘Buy’ and verify that popup is displayed and contains all appropriated fields;​
+    /// 11. Close popup and verify that your bucket contains two products.
+    /// </summary>
+
+    /// <summary>
+    /// Lesson 3:
+    /// As you are already familiar with waits, try to use different types of waits and mix them to investigate test behavior. ​
+    /// Also, try to be using different expected conditions for the explicit waits.​
+    /// </summary>
+
     [TestFixture]
-    public class Tests : BaseTest
+    public class Lesson2Test : BaseTest
     {
         private HomePage homePage;
         private SearchResultPage searchResultPage;
@@ -17,6 +41,35 @@ namespace Lesson2.Tests
             homePage = new HomePage(driver);
             searchResultPage = new SearchResultPage(driver);
             productPage = new ProductPage(driver);
+        }
+
+        // negative test case
+        [Test]
+        public void CheckSubmitButtonDisabledWithBlankEmailField()
+        {
+            homePage.ClickAccountButton()
+                .ClickSignInByEmailButton()
+                .EnterTextToEmailInput(string.Empty)
+                .VerifySubmitButtonDisabled();
+        }
+
+        // Negative test case
+        // When a user removes all items from the cart, cart is disabled
+        [Test]
+        public void CheckCartDisabledAfterRemovesProductsFromCart()
+        {
+            homePage.EnterTextToSearchInput(Constants.ExpectedKeyword)
+                .SelectFirtsItemFromSearchDropList();
+
+            searchResultPage.SelectFirtsProductFromSearchResult();
+
+            productPage.WaitElementExists(productPage.GetBuyButtonLocator());
+            productPage.ClickBuyButton()
+                .ClickGoToCartLink()
+                .ClickDeleteProductFromCart()
+                .ClickConfirmDeleteProduct()
+                .ClickClosePopupButton()
+                .VerifyCartButtonDisabled();
         }
 
         [Test]
@@ -75,7 +128,7 @@ namespace Lesson2.Tests
 
             // 11. Close popup and verify that your bucket contains two products;
             productPage.ClickClosePopupButton();
-            productPage.WaitTextToBePresentInElement(productPage.GetAmountOfProductsInCartLocator(), Constants.ExpectedAmountOfProducts.ToString());
+            productPage.WaitTextToBePresentInElement(productPage.amountOfProductsInCart.GetElement(), Constants.ExpectedAmountOfProducts.ToString());
             productPage.VerifyCartContainsTwoProducts(Constants.ExpectedAmountOfProducts);
         }
 

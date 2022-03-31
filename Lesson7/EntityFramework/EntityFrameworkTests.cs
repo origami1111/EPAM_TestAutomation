@@ -14,7 +14,7 @@ namespace Lesson7
         /// </summary>
 
         [Test]
-        public void ValidateThatThereArePersonsWhoBoughtCarsNOTInTheirHomeCity()
+        public void ValidateThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
             bool IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity = new EFHelper().IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity();
 
@@ -22,7 +22,7 @@ namespace Lesson7
         }
 
         [Test]
-        public void ValidateThatAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear()
+        public void ValidateAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear()
         {
             bool IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear = new EFHelper().IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear();
 
@@ -30,7 +30,7 @@ namespace Lesson7
         }
 
         [Test]
-        public void ValidateThatAllPersonsBoughtCars()
+        public void ValidateAllPersonsBoughtCars()
         {
             bool IsAllPersonsBoughtCars = new EFHelper().IsAllPersonsBoughtCars();
 

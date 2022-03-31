@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
+using Pages.Pages;
 using System.Linq;
-using Test;
 
 namespace Lesson8
 {

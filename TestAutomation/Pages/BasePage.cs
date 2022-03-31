@@ -1,17 +1,25 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Pages.Controls;
 using SeleniumExtras.WaitHelpers;
 using System;
 
-namespace Test
+namespace Pages.Pages
 {
     public abstract class BasePage
     {
-        protected WebDriver driver;
+        protected IWebDriver driver;
 
-        public BasePage(WebDriver driver)
+        public BasePage(IWebDriver driver)
         {
             this.driver = driver;
+        }
+
+        public T FindControl<T>(By selector) where T : BaseControl
+        {
+            IWebElement webElement = driver.FindElement(selector);
+            var control = (T)Activator.CreateInstance(typeof(T), webElement, driver);
+            return control;
         }
 
         public void ClickElement(By element)
@@ -48,10 +56,10 @@ namespace Test
                 .Until(ExpectedConditions.InvisibilityOfElementWithText(locator, text));
         }
 
-        public void WaitTextToBePresentInElement(By locator, string text, int timeToWait = 10)
+        public void WaitTextToBePresentInElement(IWebElement element, string text, int timeToWait = 10)
         {
             new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.TextToBePresentInElementLocated(locator, text));
+                .Until(ExpectedConditions.TextToBePresentInElement(element, text));
         }
 
         public void WaitVisibilityOfElement(By locator, int timeToWait = 10)
@@ -70,6 +78,12 @@ namespace Test
         {
             new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
                 .Until(ExpectedConditions.UrlToBe(url));
+        }
+
+        public void WaitAlertIsPresent(TimeSpan timeToWait)
+        {
+            new WebDriverWait(driver, timeToWait)
+               .Until(ExpectedConditions.AlertIsPresent());
         }
 
     }

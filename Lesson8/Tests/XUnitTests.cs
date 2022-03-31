@@ -11,14 +11,14 @@ namespace Lesson8
         }
 
         [Fact]
-        public void CheckThatLogoIsPresent()
+        public void CheckIsLogoDisplayed()
         {
             Assert.True(homePage.IsLogoDisplayed());
         }
 
         [Theory]
         [InlineData("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        public void CheckTableOfContentsSectionContent(string content)
         {
             Assert.True(homePage.IsTableOfContentsContainsContent(content));
         }

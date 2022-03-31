@@ -16,7 +16,7 @@ namespace Lesson7
         /// 
 
         [TestCase("Harris", "Evil")]
-        public void ValidateThatUserHasAlignment(string lastName, string alignment)
+        public void ValidateUserHasAlignment(string lastName, string alignment)
         {
             bool IsUserHasAlignment = new MongoHelper().IsUserHasAlignment(lastName, alignment);
 
@@ -25,7 +25,7 @@ namespace Lesson7
 
         [Test]
         [Ignore("Not implemented yet")]
-        public void ValidateThatAllAlignmentsHaveAtLeastOneUserThatUsesThem()
+        public void ValidateAllAlignmentsHaveAtLeastOneUserThatUsesThem()
         {
             bool IsAllAlignmentsHaveAtLeastOneUserThatUsesThem = new MongoHelper().IsAllAlignmentsHaveAtLeastOneUserThatUsesThem();
 
@@ -33,7 +33,7 @@ namespace Lesson7
         }
 
         [TestCase("Neutral", 1900)]
-        public void ValidateThatThereAreAligmentsBornAfterYear(string alignment, int year)
+        public void ValidateThereAreAligmentsBornAfterYear(string alignment, int year)
         {
             bool IsThereAreAligmentsBornAfterYear = new MongoHelper().IsThereAreAligmentsBornAfterYear(alignment, year);
 

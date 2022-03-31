@@ -1,24 +1,26 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using Pages.Controls;
+using Pages.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using Test;
 
-namespace Lesson1
+namespace Pages.Pages.Lesson1Pages
 {
     public class DocumentationPage : BasePage
     {
         private By languageTabList = By.XPath("//li[contains(@class,'nav-item')]/a");
-        private By documentationPage = By.XPath("//a[text()='Documentation']");
-        private By codeAreaActive = By.XPath("//div[@class='tab-pane fade active show']//code");
 
-        public DocumentationPage(WebDriver driver) : base(driver)
+        public Link documentationPageLink => FindControl<Link>(By.XPath("//a[text()='Documentation']"));
+        public TextArea codeAreaActive => FindControl<TextArea>(By.XPath("//div[@class='tab-pane fade active show']//code"));
+
+        public DocumentationPage(IWebDriver driver) : base(driver)
         {
         }
 
         public void VerifyDocumentationPageOpened(bool expected = true)
         {
-            bool actual = IsElementDisplayed(documentationPage);
+            bool actual = documentationPageLink.IsDisplayed();
 
             Assert.AreEqual(expected, actual, "Verify that documentation page is opened");
         }
@@ -31,7 +33,7 @@ namespace Lesson1
             {
                 ClickLanguageTab(supportedLanguage.LanguageTab);
 
-                actual = supportedLanguage.LanguageArea.Equals(GetCodeAreaActiveAttributeText());
+                actual = supportedLanguage.LanguageArea.Equals(codeAreaActive.GetAttributeText("data-lang"));
             }
 
             Assert.AreEqual(expected, actual, "Verify that all language tab and code area are displayed");
@@ -47,12 +49,6 @@ namespace Lesson1
         public void ClickLanguageTab(string language)
         {
             GetLanguageTabElement(language).Click();
-        }
-
-        private string GetCodeAreaActiveAttributeText()
-        {
-            return driver.FindElement(codeAreaActive)
-                .GetAttribute("data-lang");
         }
 
         private WebElement GetLanguageTabElement(string language)
