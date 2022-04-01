@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using Pages.Controls;
-using SeleniumExtras.WaitHelpers;
 using System;
 
 namespace Pages.Pages
@@ -22,10 +20,12 @@ namespace Pages.Pages
             return control;
         }
 
-        public void ClickElement(By element)
-        {
-            driver.FindElement(element).Click();
-        }
+        //public List<T> FindControls<T>(By selector) where T : BaseControl
+        //{
+        //    var webElements = driver.FindElements(selector);
+        //    var controls = (List<T>)Activator.CreateInstance(typeof(List<T>), webElements, driver);
+        //    return controls;
+        //}
 
         public void ClickElementByJs(By element)
         {
@@ -40,51 +40,41 @@ namespace Pages.Pages
             return driver.FindElement(element).Text;
         }
 
-        public bool IsElementEnabled(By element)
-        {
-            return driver.FindElement(element).Enabled;
-        }
+        //public void WaitInvisibilityOfELementWithText(By locator, string text, int timeToWait = 10)
+        //{
+        //    new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+        //        .Until(ExpectedConditions.InvisibilityOfElementWithText(locator, text));
+        //}
 
-        public bool IsElementDisplayed(By element)
-        {
-            return driver.FindElement(element).Displayed;
-        }
+        //public void WaitTextToBePresentInElement(IWebElement element, string text, int timeToWait = 10)
+        //{
+        //    new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+        //        .Until(ExpectedConditions.TextToBePresentInElement(element, text));
+        //}
 
-        public void WaitInvisibilityOfELementWithText(By locator, string text, int timeToWait = 10)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.InvisibilityOfElementWithText(locator, text));
-        }
+        //public void WaitVisibilityOfElement(By locator, int timeToWait = 10)
+        //{
+        //    new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+        //        .Until(ExpectedConditions.ElementIsVisible(locator));
+        //}
 
-        public void WaitTextToBePresentInElement(IWebElement element, string text, int timeToWait = 10)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.TextToBePresentInElement(element, text));
-        }
+        //public void WaitElementExists(By locator, int timeToWait = 10)
+        //{
+        //    new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+        //        .Until(ExpectedConditions.ElementExists(locator));
+        //}
 
-        public void WaitVisibilityOfElement(By locator, int timeToWait = 10)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.ElementIsVisible(locator));
-        }
+        //public void WaitUrlToBe(string url, int timeToWait = 10)
+        //{
+        //    new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+        //        .Until(ExpectedConditions.UrlToBe(url));
+        //}
 
-        public void WaitElementExists(By locator, int timeToWait = 10)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.ElementExists(locator));
-        }
-
-        public void WaitUrlToBe(string url, int timeToWait = 10)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-                .Until(ExpectedConditions.UrlToBe(url));
-        }
-
-        public void WaitAlertIsPresent(int timeToWait = 3)
-        {
-            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
-               .Until(ExpectedConditions.AlertIsPresent());
-        }
+        //public void WaitAlertIsPresent(int timeToWait = 3)
+        //{
+        //    new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
+        //       .Until(ExpectedConditions.AlertIsPresent());
+        //}
 
     }
 }

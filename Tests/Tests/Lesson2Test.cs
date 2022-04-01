@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Pages;
 using Pages.Entities;
 using Pages.Pages.Lesson2Pages;
 
@@ -63,7 +64,7 @@ namespace Tests.Tests
 
             searchResultPage.SelectFirtsProductFromSearchResult();
 
-            productPage.WaitElementExists(productPage.GetBuyButtonLocator());
+            Wait.WaitElementExists(driver, productPage.GetBuyButtonLocator());
             productPage.ClickBuyButton()
                 .ClickGoToCartLink()
                 .ClickDeleteProductFromCart()
@@ -77,12 +78,12 @@ namespace Tests.Tests
         {
             // 2. Switch header language and verify that it has been worked;​
             homePage.ChangeLanguageToUa();
-            homePage.WaitUrlToBe(Constants.ExpectedUrl);
+            Wait.WaitUrlToBe(driver, Constants.ExpectedUrl);
             homePage.VerifySelectedUaLanguageDisplayed(Constants.ExpectedUrl);
 
             // 2. Switch header city and verify that it has been worked;​
             homePage.ClickCurrentCityLink();
-            homePage.WaitVisibilityOfElement(homePage.GetPopupLocator());
+            Wait.WaitVisibilityOfElement(driver, homePage.GetPopupLocator());
             homePage.ChangeCityTo(Constants.ExpectedCity);
             homePage.VerifySelectedCityDisplayed(Constants.ExpectedCity);
 
@@ -105,11 +106,11 @@ namespace Tests.Tests
             // 7. Choose the color of device and verify that it has been changed;
             var oldTitle = productPage.GetProductTitle();
             productPage.SelectProductColor(Constants.ExpectedColor);
-            productPage.WaitInvisibilityOfELementWithText(productPage.GetProductTitleElement(), oldTitle);
+            Wait.WaitInvisibilityOfELementWithText(driver, productPage.GetProductTitleElement(), oldTitle);
             productPage.VerifySelectedColorDisplayed(Constants.ExpectedColor);
 
             // 8. Click on button ‘Buy’ and verify that popup is displayed and contains all appropriated fields;
-            productPage.WaitElementExists(productPage.GetBuyButtonLocator());
+            Wait.WaitElementExists(driver, productPage.GetBuyButtonLocator());
             productPage.ClickBuyButton();
             productPage.VerifyPopupCartDisplayed();
             productPage.VerifyPopupCartContainsAppropriatedFields(Constants.ExpectedKeyword);
@@ -121,14 +122,14 @@ namespace Tests.Tests
             searchResultPage.SelectRandomProductFromSearchResult();
 
             // 10. Click on button ‘Buy’ and verify that popup is displayed and contains all appropriated fields;
-            productPage.WaitElementExists(productPage.GetBuyButtonLocator());
+            Wait.WaitElementExists(driver, productPage.GetBuyButtonLocator());
             productPage.ClickBuyButton();
             productPage.VerifyPopupCartDisplayed();
             productPage.VerifyPopupCartContainsAppropriatedFields(Constants.ExpectedKeyword);
 
             // 11. Close popup and verify that your bucket contains two products;
             productPage.ClickClosePopupButton();
-            productPage.WaitTextToBePresentInElement(productPage.amountOfProductsInCart.GetElement(), Constants.ExpectedAmountOfProducts.ToString());
+            Wait.WaitTextToBePresentInElement(driver, productPage.amountOfProductsInCart.GetElement(), Constants.ExpectedAmountOfProducts.ToString());
             productPage.VerifyCartContainsTwoProducts(Constants.ExpectedAmountOfProducts);
         }
 

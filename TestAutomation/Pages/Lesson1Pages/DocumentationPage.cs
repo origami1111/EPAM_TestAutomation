@@ -9,6 +9,7 @@ namespace Pages.Pages.Lesson1Pages
 {
     public class DocumentationPage : BasePage
     {
+        //public List<Link> languageTabList => FindControls<Link>(By.XPath("//li[contains(@class,'nav-item')]/a"));
         private By languageTabList = By.XPath("//li[contains(@class,'nav-item')]/a");
 
         public Link documentationPageLink => FindControl<Link>(By.XPath("//a[text()='Documentation']"));
@@ -55,6 +56,7 @@ namespace Pages.Pages.Lesson1Pages
         {
             return (WebElement)driver.FindElements(languageTabList)
                 .First(languageTab => languageTab.Text == language);
+            //return languageTabList.First(languageTab => languageTab.GetText() == language).WebElement;
         }
     }
 }

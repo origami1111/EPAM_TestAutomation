@@ -1,4 +1,5 @@
-﻿using Pages.Entities;
+﻿using Pages;
+using Pages.Entities;
 using Pages.Pages.Lesson9Pages;
 using TechTalk.SpecFlow;
 
@@ -7,15 +8,17 @@ namespace Lesson9
     [Binding]
     public class SmokeSteps
     {
+        private BrowserDriver browserDriver;
         private HomePage homePage;
         private ProductPage productPage;
         private PopupPage popupPage;
 
         public SmokeSteps(BrowserDriver browserDriver)
         {
-            homePage = new HomePage(browserDriver.driver);
-            productPage = new ProductPage(browserDriver.driver);
-            popupPage = new PopupPage(browserDriver.driver);
+            this.browserDriver = browserDriver;
+            homePage = new HomePage(this.browserDriver.driver);
+            productPage = new ProductPage(this.browserDriver.driver);
+            popupPage = new PopupPage(this.browserDriver.driver);
         }
 
         [Given(@"user clicks sign up link")]
@@ -45,7 +48,7 @@ namespace Lesson9
         [Then(@"user checks that sign up is successful")]
         public void ThenUserChecksThatSignUpIsSuccessful()
         {
-            homePage.WaitAlertIsPresent();
+            Wait.WaitAlertIsPresent(browserDriver.driver);
             popupPage.VerifySignUpIsSuccessful(Constants.ExpectedAlertMessage);
         }
 
@@ -76,7 +79,7 @@ namespace Lesson9
         [Then(@"user checks for successful log in")]
         public void ThenUserChecksForSuccessfulLogin()
         {
-            homePage.WaitVisibilityOfElement(homePage.GetUserNameLocator());
+            Wait.WaitVisibilityOfElement(browserDriver.driver, homePage.GetUserNameLocator());
             homePage.VerifyUserLoggedIn(Constants.ExpectedSuccessfulText);
         }
 
@@ -101,7 +104,7 @@ namespace Lesson9
         [Then(@"user checks possibility to purchase product")]
         public void ThenUserChecksPossibilityToPurchaseProduct()
         {
-            homePage.WaitAlertIsPresent();
+            Wait.WaitAlertIsPresent(browserDriver.driver);
             productPage.VerifyProductAdded(Constants.ExpectedProductAddedText);
         }
     }
