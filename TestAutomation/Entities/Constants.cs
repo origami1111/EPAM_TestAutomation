@@ -8,5 +8,9 @@
         public const int ExpectedPrice = 30000;
         public const string ExpectedColor = "midnight";
         public const int ExpectedAmountOfProducts = 2;
+
+        public const string ExpectedAlertMessage = "Sign up successful.";
+        public const string ExpectedSuccessfulText = "Welcome";
+        public const string ExpectedProductAddedText = "Product added";
     }
 }

@@ -1,9 +1,10 @@
+using DataBases.EntityFramework;
 using NUnit.Framework;
 
-namespace Lesson7
+namespace Tests.Tests.Lesson7Tests
 {
     [TestFixture]
-    public class EntityFrameworkTests
+    public class EntityFrameworkTest
     {
 
         /// <summary>
@@ -16,9 +17,9 @@ namespace Lesson7
         [Test]
         public void ValidateThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
-            bool IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity = new EFHelper().IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity();
+            bool IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity = new EFHelper().IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity();
 
-            Assert.IsTrue(IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity);
+            Assert.IsTrue(IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity);
         }
 
         [Test]

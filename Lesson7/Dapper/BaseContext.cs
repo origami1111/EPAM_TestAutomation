@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace Lesson7
+namespace DataBases.Dapper
 {
     public class BaseContext
     {

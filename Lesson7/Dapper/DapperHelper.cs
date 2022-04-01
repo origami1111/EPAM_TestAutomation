@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Lesson7
+namespace DataBases.Dapper
 {
     public class DapperHelper : BaseContext
     {
@@ -22,7 +22,7 @@ namespace Lesson7
                     .Any();
         }
 
-        public bool IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity()
+        public bool IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
             return PerformQuery("SELECT * " +
                                 "FROM BuyersInfo b JOIN Person p ON b.PersonID = p.ID " +

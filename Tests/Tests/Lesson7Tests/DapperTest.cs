@@ -1,11 +1,11 @@
+﻿using DataBases.Dapper;
 using NUnit.Framework;
 
-namespace Lesson7
+namespace Tests.Tests.Lesson7Tests
 {
     [TestFixture]
-    public class DapperTests
+    public class DapperTest
     {
-
         /// <summary>
         /// 
         /// Use Dapper to create 3 Automation Tests (NUnit or XUnit):
@@ -18,7 +18,7 @@ namespace Lesson7
         [Test]
         public void ValidateThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
-            var result = new DapperHelper().IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity();
+            var result = new DapperHelper().IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity();
 
             Assert.IsTrue(result);
         }

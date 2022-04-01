@@ -1,11 +1,11 @@
 ﻿using Lesson7.EntityFramework.EntityDataModel;
 using System.Linq;
 
-namespace Lesson7
+namespace DataBases.EntityFramework
 {
     public class EFHelper
     {
-        public bool IsThereArePersonsWhoBoughtCarsNOTInTheirHomeCity()
+        public bool IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
             using (var context = new masterEntities())
             {

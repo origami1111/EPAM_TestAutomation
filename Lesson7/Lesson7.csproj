@@ -145,8 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dapper\BaseContext.cs" />
-    <Compile Include="Dapper\DapperTests.cs" />
     <Compile Include="Dapper\DapperHelper.cs" />
+    <Compile Include="Dapper\DapperTest.cs" />
     <Compile Include="EntityFramework\EFHelper.cs" />
     <Compile Include="EntityFramework\EntityDataModel\BuyersInfo.cs">
       <DependentUpon>Master.tt</DependentUpon>
@@ -175,10 +175,8 @@
     <Compile Include="EntityFramework\EntityDataModel\Person.cs">
       <DependentUpon>Master.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\EntityFrameworkTests.cs" />
     <Compile Include="Mongo\MongoHelper.cs" />
     <Compile Include="Mongo\Model\Alignment.cs" />
-    <Compile Include="Mongo\MongoTests.cs" />
     <Compile Include="Mongo\Model\User.cs" />
     <Compile Include="Run.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

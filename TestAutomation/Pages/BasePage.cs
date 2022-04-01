@@ -80,9 +80,9 @@ namespace Pages.Pages
                 .Until(ExpectedConditions.UrlToBe(url));
         }
 
-        public void WaitAlertIsPresent(TimeSpan timeToWait)
+        public void WaitAlertIsPresent(int timeToWait = 3)
         {
-            new WebDriverWait(driver, timeToWait)
+            new WebDriverWait(driver, TimeSpan.FromSeconds(timeToWait))
                .Until(ExpectedConditions.AlertIsPresent());
         }
 
