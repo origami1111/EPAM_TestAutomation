@@ -7,8 +7,8 @@ namespace Pages.Pages.Lesson9Pages
 {
     public class HomePage : BasePage
     {
-        public Link signUpLink => FindControl<Link>(By.Id("signin2"));
-        public Link loginLink => FindControl<Link>(By.Id("login2"));
+        public Link SignUpLink => FindControl<Link>(By.Id("signin2"));
+        public Link LoginLink => FindControl<Link>(By.Id("login2"));
 
         private By userName = By.Id("nameofuser");
         private By categories = By.Id("itemc");
@@ -44,12 +44,12 @@ namespace Pages.Pages.Lesson9Pages
 
         public void ClickLoginLink()
         {
-            loginLink.Click();
+            LoginLink.Click();
         }
 
         public void ClickSignUpLink()
         {
-            signUpLink.Click();
+            SignUpLink.Click();
         }
 
         private string GetUserNameText()

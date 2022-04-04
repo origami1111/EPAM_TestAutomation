@@ -11,26 +11,26 @@ namespace Pages.Pages.Lesson2Pages
         private By popup = By.XPath("//div[contains(@class,'popup')]");
         private By searchDropList = By.XPath("//a[contains(@class,'search-drop-keywords')]");
 
-        public Link languageLink => FindControl<Link>(By.XPath("//div[contains(@class, 'languages')]/a"));
-        public Link currentCityLink => FindControl<Link>(By.XPath("//span[contains(@class, 'currentCity')]"));
-        public Search inputSearch => FindControl<Search>(By.XPath("//input[@type='text']"));
-        public Button accountButton => FindControl<Button>(By.XPath("//button[contains(@class, 'account')]"));
-        public Button submitButton => FindControl<Button>(By.XPath("//button[@type='submit']"));
-        public Button signInByEmailButton => FindControl<Button>(By.XPath("//button/span[text()='Войти по email']"));
-        public TextField emailTextField => FindControl<TextField>(By.XPath("//input[@name='email']"));
+        public Link LanguageLink => FindControl<Link>(By.XPath("//div[contains(@class, 'languages')]/a"));
+        public Link CurrentCityLink => FindControl<Link>(By.XPath("//span[contains(@class, 'currentCity')]"));
+        public Search InputSearch => FindControl<Search>(By.XPath("//input[@type='text']"));
+        public Button AccountButton => FindControl<Button>(By.XPath("//button[contains(@class, 'account')]"));
+        public Button SubmitButton => FindControl<Button>(By.XPath("//button[@type='submit']"));
+        public Button SignInByEmailButton => FindControl<Button>(By.XPath("//button/span[text()='Войти по email']"));
+        public TextField EmailTextField => FindControl<TextField>(By.XPath("//input[@name='email']"));
 
         public HomePage(IWebDriver driver) : base(driver) { }
 
         public void VerifySubmitButtonDisabled(bool expected = true)
         {
-            bool actual = submitButton.IsEnabled();
+            bool actual = SubmitButton.IsEnabled();
 
             Assert.AreEqual(expected, actual, "Verify that submit button disabled");
         }
 
         public void VerifySelectedCityDisplayed(string expected)
         {
-            string actual = currentCityLink.GetText();
+            string actual = CurrentCityLink.GetText();
 
             Assert.AreEqual(expected, actual, "Verify that selected city is displayed");
         }
@@ -44,19 +44,19 @@ namespace Pages.Pages.Lesson2Pages
 
         public HomePage EnterTextToEmailInput(string email)
         {
-            emailTextField.EnterText(email);
+            EmailTextField.EnterText(email);
             return this;
         }
 
         public HomePage ClickSignInByEmailButton()
         {
-            signInByEmailButton.Click();
+            SignInByEmailButton.Click();
             return this;
         }
 
         public HomePage ClickAccountButton()
         {
-            accountButton.Click();
+            AccountButton.Click();
             return this;
         }
 
@@ -68,7 +68,7 @@ namespace Pages.Pages.Lesson2Pages
 
         public HomePage EnterTextToSearchInput(string keyword)
         {
-            inputSearch.EnterText(keyword);
+            InputSearch.EnterText(keyword);
             return this;
         }
 
@@ -87,12 +87,12 @@ namespace Pages.Pages.Lesson2Pages
 
         public void ChangeLanguageToUa()
         {
-            languageLink.Click();
+            LanguageLink.Click();
         }
 
         public void ClickCurrentCityLink()
         {
-            currentCityLink.Click();
+            CurrentCityLink.Click();
         }
 
     }

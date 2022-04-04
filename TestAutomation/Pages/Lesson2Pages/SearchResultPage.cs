@@ -12,7 +12,7 @@ namespace Pages.Pages.Lesson2Pages
         private By searchResultProductsTextList = By.XPath("//a[contains(@class, 'break-word')]");
         private By filterPrice = By.XPath("//form[contains(@class, 'filterPrice')]//input");
 
-        public Button submitButton => FindControl<Button>(By.XPath("//button[@type='submit']"));
+        public Button SubmitButton => FindControl<Button>(By.XPath("//button[@type='submit']"));
 
         public SearchResultPage(IWebDriver driver) : base(driver) { }
 
@@ -42,7 +42,7 @@ namespace Pages.Pages.Lesson2Pages
 
         public SearchResultPage ClickSubmitButton()
         {
-            submitButton.Click();
+            SubmitButton.Click();
             return this;
         }
 

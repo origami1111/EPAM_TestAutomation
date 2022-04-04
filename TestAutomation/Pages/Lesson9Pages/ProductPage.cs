@@ -6,7 +6,7 @@ namespace Pages.Pages.Lesson9Pages
 {
     public class ProductPage : BasePage
     {
-        public Button addToCartButton => FindControl<Button>(By.XPath("//a[contains(text(), 'Add to cart')]"));
+        public Button AddToCartButton => FindControl<Button>(By.XPath("//a[contains(text(), 'Add to cart')]"));
 
         public ProductPage(WebDriver driver) : base(driver)
         {
@@ -14,7 +14,7 @@ namespace Pages.Pages.Lesson9Pages
 
         public void ClickAddToCartButton()
         {
-            addToCartButton.Click();
+            AddToCartButton.Click();
         }
 
         public void VerifyProductAdded(string expected)

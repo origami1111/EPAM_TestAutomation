@@ -6,12 +6,12 @@ namespace Pages.Pages.Lesson9Pages
 {
     public class PopupPage : BasePage
     {
-        public TextField loginUsernameField => FindControl<TextField>(By.Id("loginusername"));
-        public TextField loginPasswordField => FindControl<TextField>(By.Id("loginpassword"));
-        public TextField signupUsernameField => FindControl<TextField>(By.Id("sign-username"));
-        public TextField signupPasswordField => FindControl<TextField>(By.Id("sign-password"));
-        public Button loginButton => FindControl<Button>(By.XPath("//button[contains(text(), 'Log in')]"));
-        public Button signUpButton => FindControl<Button>(By.XPath("//button[contains(text(), 'Sign up')]"));
+        public TextField LoginUsernameField => FindControl<TextField>(By.Id("loginusername"));
+        public TextField LoginPasswordField => FindControl<TextField>(By.Id("loginpassword"));
+        public TextField SignupUsernameField => FindControl<TextField>(By.Id("sign-username"));
+        public TextField SignupPasswordField => FindControl<TextField>(By.Id("sign-password"));
+        public Button LoginButton => FindControl<Button>(By.XPath("//button[contains(text(), 'Log in')]"));
+        public Button SignUpButton => FindControl<Button>(By.XPath("//button[contains(text(), 'Sign up')]"));
 
         public PopupPage(WebDriver driver) : base(driver)
         {
@@ -26,12 +26,12 @@ namespace Pages.Pages.Lesson9Pages
 
         public void ClickSignUpButton()
         {
-            signUpButton.Click();
+            SignUpButton.Click();
         }
 
         public void ClickLoginButton()
         {
-            loginButton.Click();
+            LoginButton.Click();
         }
 
     }

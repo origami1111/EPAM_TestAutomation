@@ -12,8 +12,8 @@ namespace Pages.Pages.Lesson1Pages
         //public List<Link> languageTabList => FindControls<Link>(By.XPath("//li[contains(@class,'nav-item')]/a"));
         private By languageTabList = By.XPath("//li[contains(@class,'nav-item')]/a");
 
-        public Link documentationPageLink => FindControl<Link>(By.XPath("//a[text()='Documentation']"));
-        public TextArea codeAreaActive => FindControl<TextArea>(By.XPath("//div[@class='tab-pane fade active show']//code"));
+        public Link DocumentationPageLink => FindControl<Link>(By.XPath("//a[text()='Documentation']"));
+        public TextArea CodeAreaActive => FindControl<TextArea>(By.XPath("//div[@class='tab-pane fade active show']//code"));
 
         public DocumentationPage(IWebDriver driver) : base(driver)
         {
@@ -21,7 +21,7 @@ namespace Pages.Pages.Lesson1Pages
 
         public void VerifyDocumentationPageOpened(bool expected = true)
         {
-            bool actual = documentationPageLink.IsDisplayed();
+            bool actual = DocumentationPageLink.IsDisplayed();
 
             Assert.AreEqual(expected, actual, "Verify that documentation page is opened");
         }
@@ -34,7 +34,7 @@ namespace Pages.Pages.Lesson1Pages
             {
                 ClickLanguageTab(supportedLanguage.LanguageTab);
 
-                actual = supportedLanguage.LanguageArea.Equals(codeAreaActive.GetAttributeText("data-lang"));
+                actual = supportedLanguage.LanguageArea.Equals(CodeAreaActive.GetAttributeText("data-lang"));
             }
 
             Assert.AreEqual(expected, actual, "Verify that all language tab and code area are displayed");

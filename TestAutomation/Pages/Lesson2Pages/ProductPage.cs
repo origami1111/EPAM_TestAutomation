@@ -11,15 +11,15 @@ namespace Pages.Pages.Lesson2Pages
         private By productTitle = By.XPath("//h1[contains(@class, 'title')]");
         private By productColorsList = By.XPath("//div[contains(@class, 'color')]/a");
 
-        public Label amountOfProductsInCart => FindControl<Label>(By.XPath("//div[@class='pr']/div[contains(@class, 'badge')]"));
-        public Text popupProductContent => FindControl<Text>(By.XPath("//div[contains(@class, 'content')]/p"));
-        public Popup popup => FindControl<Popup>(By.XPath("//div[contains(@class, 'popup')]"));
-        public Label productPriceLabel => FindControl<Label>(By.XPath("//div[contains(@class, 'priceContainer')]/div[contains(@class, 'price')]"));
-        public Link goToCartLink => FindControl<Link>(By.XPath("//a[contains(@class, 'link-dashed')]"));
-        public Button deleteProductFromCartButton => FindControl<Button>(By.XPath("//div[contains(@class, 'linkBlock')]/div/div"));
-        public Button cartButton => FindControl<Button>(By.XPath("//div[contains(@class, 'basket')]//button"));
-        public Button confirmDeleteProductButton => FindControl<Button>(By.XPath("//button/span[text()='Да']"));
-        public Button closePopupButton => FindControl<Button>(By.XPath("//div[contains(@class, 'close')]"));
+        public Label AmountOfProductsInCart => FindControl<Label>(By.XPath("//div[@class='pr']/div[contains(@class, 'badge')]"));
+        public Text PopupProductContent => FindControl<Text>(By.XPath("//div[contains(@class, 'content')]/p"));
+        public Popup Popup => FindControl<Popup>(By.XPath("//div[contains(@class, 'popup')]"));
+        public Label ProductPriceLabel => FindControl<Label>(By.XPath("//div[contains(@class, 'priceContainer')]/div[contains(@class, 'price')]"));
+        public Link GoToCartLink => FindControl<Link>(By.XPath("//a[contains(@class, 'link-dashed')]"));
+        public Button DeleteProductFromCartButton => FindControl<Button>(By.XPath("//div[contains(@class, 'linkBlock')]/div/div"));
+        public Button CartButton => FindControl<Button>(By.XPath("//div[contains(@class, 'basket')]//button"));
+        public Button ConfirmDeleteProductButton => FindControl<Button>(By.XPath("//button/span[text()='Да']"));
+        public Button ClosePopupButton => FindControl<Button>(By.XPath("//div[contains(@class, 'close')]"));
 
         public ProductPage(IWebDriver driver) : base(driver)
         {
@@ -34,7 +34,7 @@ namespace Pages.Pages.Lesson2Pages
 
         public void VerifyPopupCartContainsAppropriatedFields(string expected)
         {
-            string actual = popupProductContent.GetText().ToLower();
+            string actual = PopupProductContent.GetText().ToLower();
 
             Assert.IsTrue(actual.Contains(expected), "Verify that popup cart contains appropriated fields");
         }
@@ -49,7 +49,7 @@ namespace Pages.Pages.Lesson2Pages
         public void VerifyFilteredProductsContainsKeywords(string expectedKeyword, int expectedPrice)
         {
             string actualKeyword = GetProductTitle().ToLower();
-            int actualPrice = GetEditedProductPrice(productPriceLabel.GetText());
+            int actualPrice = GetEditedProductPrice(ProductPriceLabel.GetText());
 
             Assert.IsTrue(actualKeyword.Contains(expectedKeyword), "Verify that filtered products contain keyword");
             Assert.GreaterOrEqual(expectedPrice, actualPrice, "Verify that filtered products price is greater or equal");
@@ -73,33 +73,33 @@ namespace Pages.Pages.Lesson2Pages
 
         public void VerifyPopupCartDisplayed(bool expected = true)
         {
-            bool actual = popup.IsDisplayed();
+            bool actual = Popup.IsDisplayed();
 
             Assert.AreEqual(expected, actual, "Verify that popup cart is displayed");
         }
 
         public void VerifyCartButtonDisabled(bool expected = true)
         {
-            bool actual = cartButton.IsEnabled();
+            bool actual = CartButton.IsEnabled();
 
             Assert.AreEqual(expected, actual, "Verify that cart button disabled");
         }
 
         public ProductPage ClickConfirmDeleteProduct()
         {
-            confirmDeleteProductButton.Click();
+            ConfirmDeleteProductButton.Click();
             return this;
         }
 
         public ProductPage ClickDeleteProductFromCart()
         {
-            deleteProductFromCartButton.Click();
+            DeleteProductFromCartButton.Click();
             return this;
         }
 
         public ProductPage ClickGoToCartLink()
         {
-            goToCartLink.Click();
+            GoToCartLink.Click();
             return this;
         }
 
@@ -115,7 +115,7 @@ namespace Pages.Pages.Lesson2Pages
 
         public int GetAmountOfProductsInCart()
         {
-            return int.Parse(amountOfProductsInCart.GetText());
+            return int.Parse(AmountOfProductsInCart.GetText());
         }
 
         public string GetProductTitle()
@@ -125,7 +125,7 @@ namespace Pages.Pages.Lesson2Pages
 
         public ProductPage ClickClosePopupButton()
         {
-            closePopupButton.ClickJs();
+            ClosePopupButton.ClickJs();
             return this;
         }
 

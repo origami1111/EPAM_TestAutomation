@@ -30,13 +30,13 @@ namespace Lesson9
         [Given(@"user enter (.*) on username field for sign up")]
         public void GivenUserEnterUsernameOnUsernameFieldForSignUp(string username)
         {
-            popupPage.signupUsernameField.EnterText(username);
+            popupPage.SignupUsernameField.EnterText(username);
         }
 
         [Given(@"user enter (.*) on password field for sign up")]
         public void GivenUserEnterPasswordOnPasswordFieldForSignUp(string password)
         {
-            popupPage.signupPasswordField.EnterText(password);
+            popupPage.SignupPasswordField.EnterText(password);
         }
 
         [When(@"user clicks on sign up button")]
@@ -61,13 +61,13 @@ namespace Lesson9
         [Given(@"user enter (.*) on username field for login")]
         public void GivenUserEnterUsernameOnUsernameFieldForLogin(string username)
         {
-            popupPage.loginUsernameField.EnterText(username);
+            popupPage.LoginUsernameField.EnterText(username);
         }
 
         [Given(@"user enter (.*) on password field for login")]
         public void GivenUserEnterPasswordOnPasswordFieldForLogin(string password)
         {
-            popupPage.loginPasswordField.EnterText(password);
+            popupPage.LoginPasswordField.EnterText(password);
         }
 
         [When(@"user clicks on login button")]

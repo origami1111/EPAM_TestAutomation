@@ -8,13 +8,13 @@ namespace Pages.Pages.Lesson8Pages
     {
         private By tableOfContents = By.XPath("//div[@class='container']/ul/li/a");
 
-        public Image logo => FindControl<Image>(By.XPath("//img[@title='xUnit.net']"));
+        public Image Logo => FindControl<Image>(By.XPath("//img[@title='xUnit.net']"));
 
         public HomePage(WebDriver driver) : base(driver) { }
 
         public bool IsLogoDisplayed()
         {
-            return logo.IsDisplayed();
+            return Logo.IsDisplayed();
         }
 
         public bool IsTableOfContentsContainsContent(string content)

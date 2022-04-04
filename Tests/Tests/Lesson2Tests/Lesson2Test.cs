@@ -3,7 +3,7 @@ using Pages;
 using Pages.Entities;
 using Pages.Pages.Lesson2Pages;
 
-namespace Tests.Tests
+namespace Tests.Tests.Lesson2Tests
 {
 
     /// <summary>
@@ -78,8 +78,8 @@ namespace Tests.Tests
         {
             // 2. Switch header language and verify that it has been worked;​
             homePage.ChangeLanguageToUa();
-            Wait.WaitUrlToBe(driver, Constants.ExpectedUrl);
-            homePage.VerifySelectedUaLanguageDisplayed(Constants.ExpectedUrl);
+            Wait.WaitUrlToBe(driver, Constants.ExpectedCtrsUrl);
+            homePage.VerifySelectedUaLanguageDisplayed(Constants.ExpectedCtrsUrl);
 
             // 2. Switch header city and verify that it has been worked;​
             homePage.ClickCurrentCityLink();
@@ -129,7 +129,7 @@ namespace Tests.Tests
 
             // 11. Close popup and verify that your bucket contains two products;
             productPage.ClickClosePopupButton();
-            Wait.WaitTextToBePresentInElement(driver, productPage.amountOfProductsInCart.GetElement(), Constants.ExpectedAmountOfProducts.ToString());
+            Wait.WaitTextToBePresentInElement(driver, productPage.AmountOfProductsInCart.GetElement(), Constants.ExpectedAmountOfProducts.ToString());
             productPage.VerifyCartContainsTwoProducts(Constants.ExpectedAmountOfProducts);
         }
 

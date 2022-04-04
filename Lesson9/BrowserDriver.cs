@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Pages.Entities;
 using System;
 
 namespace Lesson9
@@ -13,9 +14,9 @@ namespace Lesson9
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--no-sandbox", "start-maximized", "--incognito");
             driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
-            driver.Navigate().GoToUrl("https://www.demoblaze.com/index.html");
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Constants.DefaultTimeToWait);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(Constants.DefaultTimeToWait);
+            driver.Navigate().GoToUrl(Constants.DemoblazeUrl);
         }
 
         public void Dispose()
