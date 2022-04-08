@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pages.Entities;
 
 namespace Lesson8
 {
@@ -18,10 +19,9 @@ namespace Lesson8
         }
 
         [TestMethod]
-        [DataRow("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        public void CheckThatTableOfContentsSectionContent()
         {
-            Assert.IsTrue(homePage.IsTableOfContentsContainsContent(content));
+            Assert.IsTrue(homePage.IsTableOfContentsContainsContent(Constants.ExpectedDocumentation));
         }
 
         [TestCleanup]

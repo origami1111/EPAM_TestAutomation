@@ -7,5 +7,7 @@
         public const string DemoblazeUrl = "https://www.demoblaze.com/index.html";
         public const string SeleniumUrl = "https://www.selenium.dev/";
         public const string CtrsUrl = "https://www.ctrs.com.ua/";
+
+        public const string ExpectedDocumentation = "Documentation";
     }
 }

@@ -1,7 +1,6 @@
-﻿using DataBases.Mongo;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace Tests.Tests.Lesson7Tests
+namespace DataBases.Mongo
 {
     [TestFixture]
     public class MongoTests
@@ -10,7 +9,7 @@ namespace Tests.Tests.Lesson7Tests
         /// 
         /// - Validate that user ‘Harris’ has alignment ‘Evil’
         /// - Validate that All Alignments have at least one user that uses them
-        /// - Validate that there are ‘Neutral’ Alignments born after 1900 (Should Fail
+        /// - Validate that there are ‘Neutral’ Alignments born after 1900 (Should Fail)
         /// 
         /// </summary>
         /// 

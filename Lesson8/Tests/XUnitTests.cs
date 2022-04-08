@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pages.Entities;
+using System;
 using Xunit;
 
 namespace Lesson8
@@ -16,11 +17,10 @@ namespace Lesson8
             Assert.True(homePage.IsLogoDisplayed());
         }
 
-        [Theory]
-        [InlineData("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        [Fact]
+        public void CheckThatTableOfContentsSectionContent()
         {
-            Assert.True(homePage.IsTableOfContentsContainsContent(content));
+            Assert.True(homePage.IsTableOfContentsContainsContent(Constants.ExpectedDocumentation));
         }
 
         public void Dispose()

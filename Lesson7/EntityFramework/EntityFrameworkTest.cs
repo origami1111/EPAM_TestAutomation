@@ -1,7 +1,6 @@
-using DataBases.EntityFramework;
 using NUnit.Framework;
 
-namespace Tests.Tests.Lesson7Tests
+namespace DataBases.EntityFramework
 {
     [TestFixture]
     public class EntityFrameworkTest
