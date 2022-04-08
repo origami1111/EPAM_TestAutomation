@@ -25,7 +25,7 @@ namespace Tests.Tests.Lesson1Tests
         [SetUp]
         public new void SetUp()
         {
-            driver.Navigate().GoToUrl("https://www.selenium.dev/");
+            driver.Navigate().GoToUrl(Constants.SeleniumUrl);
             homePage = new HomePage(driver);
             documentationPage = new DocumentationPage(driver);
         }
@@ -33,62 +33,36 @@ namespace Tests.Tests.Lesson1Tests
         [Test]
         public void CheckSamplesForEachSupportedLanguageAndCodeAreaDisplayedOnPage()
         {
+            #region TestCases
+
+            List<string> languageCases = new List<string>
+            {
+                "Kotlin",
+                "JavaScript",
+                "Ruby",
+                "CSharp",
+                "Python",
+                "Java"
+            };
+
+            Dictionary<string, string> languageAndCodeAreaCases = new Dictionary<string, string>()
+            {
+                { "kt", "Kotlin" },
+                { "js", "JavaScript" },
+                { "rb", "Ruby" },
+                { "cs", "CSharp" },
+                { "py", "Python" },
+                { "java", "Java" },
+            };
+
+            #endregion
+
             homePage.DocumentationLink.Click();
-
             documentationPage.VerifyDocumentationPageOpened();
-
-            documentationPage.VerifyAllLanguageTabDisplayed(TestCase.languageCases);
-
-            documentationPage.VerifyAllLanguageTabAndCodeAreaDisplayed(TestCase.languageAndCodeAreaCases);
+            documentationPage.VerifyAllLanguageTabDisplayed(languageCases);
+            documentationPage.VerifyAllLanguageTabAndCodeAreaDisplayed(languageAndCodeAreaCases);
         }
 
-    }
-
-    public class TestCase
-    {
-        public static List<string> languageCases = new List<string>
-        {
-            "Kotlin",
-            "JavaScript",
-            "Ruby",
-            "CSharp",
-            "Python",
-            "Java"
-        };
-
-        public static List<SupportedLanguage> languageAndCodeAreaCases = new List<SupportedLanguage>
-        {
-            new SupportedLanguage
-            {
-                LanguageTab = "Kotlin",
-                LanguageArea = "kt"
-            },
-            new SupportedLanguage
-            {
-                LanguageTab = "JavaScript",
-                LanguageArea = "js"
-            },
-            new SupportedLanguage
-            {
-                LanguageTab = "Ruby",
-                LanguageArea = "rb"
-            },
-            new SupportedLanguage
-            {
-                LanguageTab = "CSharp",
-                LanguageArea = "cs"
-            },
-            new SupportedLanguage
-            {
-                LanguageTab = "Python",
-                LanguageArea = "py"
-            },
-            new SupportedLanguage
-            {
-                LanguageTab = "Java",
-                LanguageArea = "java"
-            },
-        };
     }
 
 }

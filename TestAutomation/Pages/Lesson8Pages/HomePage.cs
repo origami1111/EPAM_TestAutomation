@@ -20,7 +20,6 @@ namespace Pages.Pages.Lesson8Pages
         public bool IsTableOfContentsContainsContent(string content)
         {
             var elements = driver.FindElements(tableOfContents);
-
             return elements.Any(e => e.Text == content);
         }
 

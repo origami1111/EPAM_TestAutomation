@@ -20,13 +20,6 @@ namespace Pages.Pages
             return control;
         }
 
-        //public List<T> FindControls<T>(By selector) where T : BaseControl
-        //{
-        //    var webElements = driver.FindElements(selector);
-        //    var controls = (List<T>)Activator.CreateInstance(typeof(List<T>), webElements, driver);
-        //    return controls;
-        //}
-
         public void ClickElementByJs(By element)
         {
             var el = driver.FindElement(element);

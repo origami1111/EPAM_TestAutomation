@@ -18,7 +18,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
             bool IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity = new EFHelper().IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity();
-
             Assert.IsTrue(IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity);
         }
 
@@ -26,7 +25,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear()
         {
             bool IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear = new EFHelper().IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear();
-
             Assert.IsTrue(IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear);
         }
 
@@ -34,7 +32,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateAllPersonsBoughtCars()
         {
             bool IsAllPersonsBoughtCars = new EFHelper().IsAllPersonsBoughtCars();
-
             Assert.IsTrue(IsAllPersonsBoughtCars);
         }
     }

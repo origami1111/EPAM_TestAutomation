@@ -19,7 +19,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateUserHasAlignment(string lastName, string alignment)
         {
             bool IsUserHasAlignment = new MongoHelper().IsUserHasAlignment(lastName, alignment);
-
             Assert.IsTrue(IsUserHasAlignment);
         }
 
@@ -28,7 +27,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateAllAlignmentsHaveAtLeastOneUserThatUsesThem()
         {
             bool IsAllAlignmentsHaveAtLeastOneUserThatUsesThem = new MongoHelper().IsAllAlignmentsHaveAtLeastOneUserThatUsesThem();
-
             Assert.IsTrue(IsAllAlignmentsHaveAtLeastOneUserThatUsesThem);
         }
 
@@ -36,7 +34,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateThereAreAligmentsBornAfterYear(string alignment, int year)
         {
             bool IsThereAreAligmentsBornAfterYear = new MongoHelper().IsThereAreAligmentsBornAfterYear(alignment, year);
-
             Assert.IsTrue(IsThereAreAligmentsBornAfterYear);
         }
     }

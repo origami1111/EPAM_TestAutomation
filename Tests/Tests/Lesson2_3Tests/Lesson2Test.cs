@@ -38,7 +38,7 @@ namespace Tests.Tests.Lesson2Tests
         [SetUp]
         public new void SetUp()
         {
-            driver.Navigate().GoToUrl("https://www.ctrs.com.ua/");
+            driver.Navigate().GoToUrl(Constants.CtrsUrl);
             homePage = new HomePage(driver);
             searchResultPage = new SearchResultPage(driver);
             productPage = new ProductPage(driver);
@@ -46,20 +46,27 @@ namespace Tests.Tests.Lesson2Tests
 
         // negative test case
         [Test]
-        public void CheckSubmitButtonDisabledWithBlankEmailField()
+        public void CheckSubmitButtonIsNotClickableWithBlankEmailField()
         {
             homePage.ClickAccountButton()
                 .ClickSignInByEmailButton()
                 .EnterTextToEmailInput(string.Empty)
-                .VerifySubmitButtonDisabled();
+                .VerifySubmitButtonIsNotClickable();
         }
 
         // Negative test case
-        // When a user removes all items from the cart, cart is disabled
+        // When a user removes all items from the cart, cart is empty
         [Test]
-        public void CheckCartDisabledAfterRemovesProductsFromCart()
+        public void CheckCartIsEmptyAfterRemovesProductsFromCart()
         {
-            homePage.EnterTextToSearchInput(Constants.ExpectedKeyword)
+            #region Expected results
+
+            const string ExpectedKeyword = "iphone";
+            const string ExpectedMessage = "Ваша корзина пуста";
+
+            #endregion
+
+            homePage.EnterTextToSearchInput(ExpectedKeyword)
                 .SelectFirtsItemFromSearchDropList();
 
             searchResultPage.SelectFirtsProductFromSearchResult();
@@ -70,50 +77,61 @@ namespace Tests.Tests.Lesson2Tests
                 .ClickDeleteProductFromCart()
                 .ClickConfirmDeleteProduct()
                 .ClickClosePopupButton()
-                .VerifyCartButtonDisabled();
+                .VerifyCartButtonIsEmpty(ExpectedMessage);
         }
 
         [Test]
         public void AllTests()
         {
+            #region Expected results
+
+            const string ExpectedCtrsUrl = "https://www.ctrs.com.ua/uk/";
+            const string ExpectedCity = "Дніпро";
+            const string ExpectedKeyword = "iphone";
+            const int ExpectedPrice = 30000;
+            const string ExpectedColor = "midnight";
+            const int ExpectedAmountOfProducts = 2;
+
+            #endregion
+
             // 2. Switch header language and verify that it has been worked;​
             homePage.ChangeLanguageToUa();
-            Wait.WaitUrlToBe(driver, Constants.ExpectedCtrsUrl);
-            homePage.VerifySelectedUaLanguageDisplayed(Constants.ExpectedCtrsUrl);
+            Wait.WaitUrlToBe(driver, ExpectedCtrsUrl);
+            homePage.VerifySelectedUaLanguageDisplayed(ExpectedCtrsUrl);
 
             // 2. Switch header city and verify that it has been worked;​
             homePage.ClickCurrentCityLink();
             Wait.WaitVisibilityOfElement(driver, homePage.GetPopupLocator());
-            homePage.ChangeCityTo(Constants.ExpectedCity);
-            homePage.VerifySelectedCityDisplayed(Constants.ExpectedCity);
+            homePage.ChangeCityTo(ExpectedCity);
+            homePage.VerifySelectedCityDisplayed(ExpectedCity);
 
             // 3. Enter 2 appropriated letters in the search bar, for example,
             //    “lg” and select the first item of the popup list;
-            homePage.EnterTextToSearchInput(Constants.ExpectedKeyword)
+            homePage.EnterTextToSearchInput(ExpectedKeyword)
                 .SelectFirtsItemFromSearchDropList();
 
             // 4. Verify that items list for first page contains elements with appropriate title;
-            searchResultPage.VerifySearchResultProductsContainsSearchKeyword(Constants.ExpectedKeyword);
+            searchResultPage.VerifySearchResultProductsContainsSearchKeyword(ExpectedKeyword);
 
             // 5. Filter items (price, manufacturer, discount);​
-            searchResultPage.SetFilterPriceRangeToField(Constants.ExpectedPrice)
+            searchResultPage.SetFilterPriceRangeToField(ExpectedPrice)
                 .ClickSubmitButton();
 
             // 6. Click on first element and verify headers and description;​
             searchResultPage.SelectFirtsProductFromSearchResult();
-            productPage.VerifyFilteredProductsContainsKeywords(Constants.ExpectedKeyword, Constants.ExpectedPrice);
+            productPage.VerifyFilteredProductsContainsKeywords(ExpectedKeyword, ExpectedPrice);
 
             // 7. Choose the color of device and verify that it has been changed;
             var oldTitle = productPage.GetProductTitle();
-            productPage.SelectProductColor(Constants.ExpectedColor);
+            productPage.SelectProductColor(ExpectedColor);
             Wait.WaitInvisibilityOfELementWithText(driver, productPage.GetProductTitleElement(), oldTitle);
-            productPage.VerifySelectedColorDisplayed(Constants.ExpectedColor);
+            productPage.VerifySelectedColorDisplayed(ExpectedColor);
 
             // 8. Click on button ‘Buy’ and verify that popup is displayed and contains all appropriated fields;
             Wait.WaitElementExists(driver, productPage.GetBuyButtonLocator());
             productPage.ClickBuyButton();
             productPage.VerifyPopupCartDisplayed();
-            productPage.VerifyPopupCartContainsAppropriatedFields(Constants.ExpectedKeyword);
+            productPage.VerifyPopupCartContainsAppropriatedFields(ExpectedKeyword);
 
             // 9. Return to the items search and choose another product;​
             productPage.ClickClosePopupButton();
@@ -125,12 +143,12 @@ namespace Tests.Tests.Lesson2Tests
             Wait.WaitElementExists(driver, productPage.GetBuyButtonLocator());
             productPage.ClickBuyButton();
             productPage.VerifyPopupCartDisplayed();
-            productPage.VerifyPopupCartContainsAppropriatedFields(Constants.ExpectedKeyword);
+            productPage.VerifyPopupCartContainsAppropriatedFields(ExpectedKeyword);
 
             // 11. Close popup and verify that your bucket contains two products;
             productPage.ClickClosePopupButton();
-            Wait.WaitTextToBePresentInElement(driver, productPage.AmountOfProductsInCart.GetElement(), Constants.ExpectedAmountOfProducts.ToString());
-            productPage.VerifyCartContainsTwoProducts(Constants.ExpectedAmountOfProducts);
+            Wait.WaitTextToBePresentInElement(driver, productPage.AmountOfProductsInCart.GetElement(), ExpectedAmountOfProducts.ToString());
+            productPage.VerifyCartContainsTwoProducts(ExpectedAmountOfProducts);
         }
 
     }

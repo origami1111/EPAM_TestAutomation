@@ -1,5 +1,4 @@
 ﻿using Pages;
-using Pages.Entities;
 using Pages.Pages.Lesson9Pages;
 using TechTalk.SpecFlow;
 
@@ -48,8 +47,10 @@ namespace Lesson9
         [Then(@"user checks that sign up is successful")]
         public void ThenUserChecksThatSignUpIsSuccessful()
         {
+            const string ExpectedAlertMessage = "Sign up successful.";
+
             Wait.WaitAlertIsPresent(browserDriver.driver);
-            popupPage.VerifySignUpIsSuccessful(Constants.ExpectedAlertMessage);
+            popupPage.VerifySignUpIsSuccessful(ExpectedAlertMessage);
         }
 
         [Given(@"user clicks login link")]
@@ -79,8 +80,10 @@ namespace Lesson9
         [Then(@"user checks for successful log in")]
         public void ThenUserChecksForSuccessfulLogin()
         {
+            const string ExpectedSuccessfulText = "Welcome";
+
             Wait.WaitVisibilityOfElement(browserDriver.driver, homePage.GetUserNameLocator());
-            homePage.VerifyUserLoggedIn(Constants.ExpectedSuccessfulText);
+            homePage.VerifyUserLoggedIn(ExpectedSuccessfulText);
         }
 
         [Given(@"user clicks (.*) category")]
@@ -104,8 +107,10 @@ namespace Lesson9
         [Then(@"user checks possibility to purchase product")]
         public void ThenUserChecksPossibilityToPurchaseProduct()
         {
+            const string ExpectedProductAddedText = "Product added";
+
             Wait.WaitAlertIsPresent(browserDriver.driver);
-            productPage.VerifyProductAdded(Constants.ExpectedProductAddedText);
+            productPage.VerifyProductAdded(ExpectedProductAddedText);
         }
     }
 }

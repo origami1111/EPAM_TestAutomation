@@ -21,24 +21,25 @@ namespace Pages.Pages.Lesson2Pages
 
         public HomePage(IWebDriver driver) : base(driver) { }
 
-        public void VerifySubmitButtonDisabled(bool expected = true)
+        public void VerifySubmitButtonIsNotClickable()
         {
-            bool actual = SubmitButton.IsEnabled();
+            Assert.Throws<ElementClickInterceptedException>(SubmitButton.Click, "Verify that submit button is not clickable");
+        }
 
-            Assert.AreEqual(expected, actual, "Verify that submit button disabled");
+        public void ClickSubmitButton()
+        {
+            SubmitButton.Click();
         }
 
         public void VerifySelectedCityDisplayed(string expected)
         {
             string actual = CurrentCityLink.GetText();
-
             Assert.AreEqual(expected, actual, "Verify that selected city is displayed");
         }
 
         public void VerifySelectedUaLanguageDisplayed(string expected)
         {
             string actual = driver.Url;
-
             Assert.AreEqual(expected, actual, "Verify that selected language is displayed");
         }
 

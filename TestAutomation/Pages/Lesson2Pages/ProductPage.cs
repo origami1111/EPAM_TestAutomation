@@ -11,6 +11,8 @@ namespace Pages.Pages.Lesson2Pages
         private By productTitle = By.XPath("//h1[contains(@class, 'title')]");
         private By productColorsList = By.XPath("//div[contains(@class, 'color')]/a");
 
+        public Text testText => FindControl<Text>(By.XPath("//div[@class='tc']"));
+
         public Label AmountOfProductsInCart => FindControl<Label>(By.XPath("//div[@class='pr']/div[contains(@class, 'badge')]"));
         public Text PopupProductContent => FindControl<Text>(By.XPath("//div[contains(@class, 'content')]/p"));
         public Popup Popup => FindControl<Popup>(By.XPath("//div[contains(@class, 'popup')]"));
@@ -28,21 +30,18 @@ namespace Pages.Pages.Lesson2Pages
         public void VerifyCartContainsTwoProducts(int expected)
         {
             int actual = GetAmountOfProductsInCart();
-
             Assert.AreEqual(expected, actual, "Verify that cart contains two products");
         }
 
         public void VerifyPopupCartContainsAppropriatedFields(string expected)
         {
             string actual = PopupProductContent.GetText().ToLower();
-
             Assert.IsTrue(actual.Contains(expected), "Verify that popup cart contains appropriated fields");
         }
 
         public void VerifySelectedColorDisplayed(string expected)
         {
             string actual = GetProductTitle().ToLower();
-
             Assert.IsTrue(actual.Contains(expected), "Verify that selected color is displayed");
         }
 
@@ -74,15 +73,13 @@ namespace Pages.Pages.Lesson2Pages
         public void VerifyPopupCartDisplayed(bool expected = true)
         {
             bool actual = Popup.IsDisplayed();
-
             Assert.AreEqual(expected, actual, "Verify that popup cart is displayed");
         }
 
-        public void VerifyCartButtonDisabled(bool expected = true)
+        public void VerifyCartButtonIsEmpty(string expected)
         {
-            bool actual = CartButton.IsEnabled();
-
-            Assert.AreEqual(expected, actual, "Verify that cart button disabled");
+            string actual = testText.GetText();
+            Assert.IsTrue(actual.Contains(expected));
         }
 
         public ProductPage ClickConfirmDeleteProduct()

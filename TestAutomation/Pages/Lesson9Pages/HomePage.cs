@@ -38,7 +38,6 @@ namespace Pages.Pages.Lesson9Pages
         public void VerifyUserLoggedIn(string expected)
         {
             string actual = GetUserNameText();
-
             Assert.IsTrue(actual.Contains(expected), "Verify that user logged in successfully");
         }
 

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using Pages.Controls;
-using Pages.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +8,7 @@ namespace Pages.Pages.Lesson1Pages
 {
     public class DocumentationPage : BasePage
     {
-        //public List<Link> languageTabList => FindControls<Link>(By.XPath("//li[contains(@class,'nav-item')]/a"));
         private By languageTabList = By.XPath("//li[contains(@class,'nav-item')]/a");
-
         public Link DocumentationPageLink => FindControl<Link>(By.XPath("//a[text()='Documentation']"));
         public TextArea CodeAreaActive => FindControl<TextArea>(By.XPath("//div[@class='tab-pane fade active show']//code"));
 
@@ -22,19 +19,18 @@ namespace Pages.Pages.Lesson1Pages
         public void VerifyDocumentationPageOpened(bool expected = true)
         {
             bool actual = DocumentationPageLink.IsDisplayed();
-
             Assert.AreEqual(expected, actual, "Verify that documentation page is opened");
         }
 
-        public void VerifyAllLanguageTabAndCodeAreaDisplayed(List<SupportedLanguage> supportedLanguages, bool expected = true)
+        public void VerifyAllLanguageTabAndCodeAreaDisplayed(Dictionary<string, string> supportedLanguages, bool expected = true)
         {
             bool actual = false;
 
             foreach (var supportedLanguage in supportedLanguages)
             {
-                ClickLanguageTab(supportedLanguage.LanguageTab);
+                ClickLanguageTab(supportedLanguage.Value);
 
-                actual = supportedLanguage.LanguageArea.Equals(CodeAreaActive.GetAttributeText("data-lang"));
+                actual = supportedLanguage.Key.Equals(CodeAreaActive.GetAttributeText("data-lang"));
             }
 
             Assert.AreEqual(expected, actual, "Verify that all language tab and code area are displayed");
@@ -43,7 +39,6 @@ namespace Pages.Pages.Lesson1Pages
         public void VerifyAllLanguageTabDisplayed(List<string> languages, bool expected = true)
         {
             bool actual = languages.All(language => GetLanguageTabElement(language).Displayed);
-
             Assert.AreEqual(expected, actual, "Verify that all language tab are displayed");
         }
 
@@ -56,7 +51,6 @@ namespace Pages.Pages.Lesson1Pages
         {
             return (WebElement)driver.FindElements(languageTabList)
                 .First(languageTab => languageTab.Text == language);
-            //return languageTabList.First(languageTab => languageTab.GetText() == language).WebElement;
         }
     }
 }

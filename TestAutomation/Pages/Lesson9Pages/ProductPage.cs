@@ -20,7 +20,6 @@ namespace Pages.Pages.Lesson9Pages
         public void VerifyProductAdded(string expected)
         {
             string actual = driver.SwitchTo().Alert().Text;
-
             Assert.AreEqual(expected, actual, "Verify that product added");
         }
 

@@ -20,7 +20,6 @@ namespace Pages.Pages.Lesson9Pages
         public void VerifySignUpIsSuccessful(string expected)
         {
             string actual = driver.SwitchTo().Alert().Text;
-
             Assert.AreEqual(expected, actual, "Verify that sign up is successful");
         }
 

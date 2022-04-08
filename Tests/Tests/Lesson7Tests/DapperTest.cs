@@ -19,7 +19,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateThereArePersonsWhoBoughtCarsNotInTheirHomeCity()
         {
             var result = new DapperHelper().IsThereArePersonsWhoBoughtCarsNotInTheirHomeCity();
-
             Assert.IsTrue(result);
         }
 
@@ -27,7 +26,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear()
         {
             var result = new DapperHelper().IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear();
-
             Assert.IsTrue(result);
         }
 
@@ -35,7 +33,6 @@ namespace Tests.Tests.Lesson7Tests
         public void ValidateAllPersonsBoughtCars()
         {
             var result = new DapperHelper().IsAllPersonsBoughtCars();
-
             Assert.IsTrue(result);
         }
     }
