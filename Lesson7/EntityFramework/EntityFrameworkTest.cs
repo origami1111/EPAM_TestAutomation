@@ -27,7 +27,7 @@ namespace DataBases.EntityFramework
             Assert.IsTrue(IsAllPersonsWhoBoughtCarsAreOlderThanTheirBuyersInfoYear);
         }
 
-        [Test]
+        [Test, Description("should fail")]
         public void ValidateAllPersonsBoughtCars()
         {
             bool IsAllPersonsBoughtCars = new EFHelper().IsAllPersonsBoughtCars();

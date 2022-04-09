@@ -30,7 +30,7 @@ namespace DataBases.Dapper
             Assert.IsTrue(result);
         }
 
-        [Test]
+        [Test, Description("should fail")]
         public void ValidateAllPersonsBoughtCars()
         {
             var result = new DapperHelper().IsAllPersonsBoughtCars();

@@ -14,10 +14,17 @@ namespace DataBases.Mongo
         /// </summary>
         /// 
 
-        [TestCase("Harris", "Evil")]
-        public void ValidateUserHasAlignment(string lastName, string alignment)
+        [Test]
+        public void ValidateUserHasAlignment()
         {
-            bool IsUserHasAlignment = new MongoHelper().IsUserHasAlignment(lastName, alignment);
+            #region test data
+
+            const string LastName = "Harris";
+            const string Alignment = "Evil";
+
+            #endregion
+
+            bool IsUserHasAlignment = new MongoHelper().IsUserHasAlignment(LastName, Alignment);
             Assert.IsTrue(IsUserHasAlignment);
         }
 
@@ -29,10 +36,17 @@ namespace DataBases.Mongo
             Assert.IsTrue(IsAllAlignmentsHaveAtLeastOneUserThatUsesThem);
         }
 
-        [TestCase("Neutral", 1900)]
-        public void ValidateThereAreAligmentsBornAfterYear(string alignment, int year)
+        [Test, Description("should fail")]
+        public void ValidateThereAreAligmentsBornAfterYear()
         {
-            bool IsThereAreAligmentsBornAfterYear = new MongoHelper().IsThereAreAligmentsBornAfterYear(alignment, year);
+            #region test data
+
+            const string Alignment = "Neutral";
+            const int Year = 1900;
+
+            #endregion
+
+            bool IsThereAreAligmentsBornAfterYear = new MongoHelper().IsThereAreAligmentsBornAfterYear(Alignment, Year);
             Assert.IsTrue(IsThereAreAligmentsBornAfterYear);
         }
     }
