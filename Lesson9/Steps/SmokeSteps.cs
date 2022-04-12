@@ -1,4 +1,4 @@
-﻿using Pages;
+﻿using Lesson3.Pages;
 using Pages.Pages.Lesson9Pages;
 using TechTalk.SpecFlow;
 

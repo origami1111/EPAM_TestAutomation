@@ -4,7 +4,7 @@ using Pages.Entities;
 using SeleniumExtras.WaitHelpers;
 using System;
 
-namespace Pages
+namespace Lesson3.Pages
 {
     public static class Wait
     {

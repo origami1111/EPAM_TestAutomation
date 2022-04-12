@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Pages;
+﻿using Lesson3.Pages;
+using NUnit.Framework;
 using Pages.Entities;
 using Pages.Pages.Lesson2Pages;
 
