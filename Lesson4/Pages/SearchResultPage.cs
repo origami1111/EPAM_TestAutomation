@@ -6,8 +6,7 @@ namespace JDIProject.Pages
 {
     public class SearchResultPage : WebPage
     {
-        //[FindBy(XPath = "//div[contains(@class, 'item-prod')]")]
-        [FindBy(XPath = "//*[@id='js_category_filter']/div/div[2]/div/div[3]/div[1]/div")]
+        [FindBy(XPath = "//div[contains(@class, 'item-prod')][1]")]
         public IWebElement SearchResult;
     }
 }
