@@ -64,7 +64,7 @@ Hometask:
 4. Think what to include to Setup and Teardown;​  
 5. Create both tests using each runner (separetly): NUnit, xUnit and MSTest.​  
 
-#Lesson 9 (Testing approaches)
+# Lesson 9 (Testing approaches)
 Hometask:  
 Go to https://www.demoblaze.com/index.html .​  
 Create test that will check that sign up is successful for next users:​  

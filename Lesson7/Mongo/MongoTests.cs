@@ -1,42 +1,52 @@
-using NUnit.Framework;
+ï»¿using NUnit.Framework;
 
-namespace Lesson7
+namespace DataBases.Mongo
 {
     [TestFixture]
     public class MongoTests
     {
-
         /// <summary>
         /// 
-        /// - Validate that user ‘Harris’ has alignment ‘Evil’
+        /// - Validate that user â€˜Harrisâ€™ has alignment â€˜Evilâ€™
         /// - Validate that All Alignments have at least one user that uses them
-        /// - Validate that there are ‘Neutral’ Alignments born after 1900 (Should Fail
+        /// - Validate that there are â€˜Neutralâ€™ Alignments born after 1900 (Should Fail)
         /// 
         /// </summary>
         /// 
 
-        [TestCase("Harris", "Evil")]
-        public void ValidateThatUserHasAlignment(string lastName, string alignment)
+        [Test]
+        public void ValidateUserHasAlignment()
         {
-            bool IsUserHasAlignment = new MongoHelper().IsUserHasAlignment(lastName, alignment);
+            #region test data
 
+            const string LastName = "Harris";
+            const string Alignment = "Evil";
+
+            #endregion
+
+            bool IsUserHasAlignment = new MongoHelper().IsUserHasAlignment(LastName, Alignment);
             Assert.IsTrue(IsUserHasAlignment);
         }
 
         [Test]
         [Ignore("Not implemented yet")]
-        public void ValidateThatAllAlignmentsHaveAtLeastOneUserThatUsesThem()
+        public void ValidateAllAlignmentsHaveAtLeastOneUserThatUsesThem()
         {
             bool IsAllAlignmentsHaveAtLeastOneUserThatUsesThem = new MongoHelper().IsAllAlignmentsHaveAtLeastOneUserThatUsesThem();
-
             Assert.IsTrue(IsAllAlignmentsHaveAtLeastOneUserThatUsesThem);
         }
 
-        [TestCase("Neutral", 1900)]
-        public void ValidateThatThereAreAligmentsBornAfterYear(string alignment, int year)
+        [Test, Description("should fail")]
+        public void ValidateThereAreAligmentsBornAfterYear()
         {
-            bool IsThereAreAligmentsBornAfterYear = new MongoHelper().IsThereAreAligmentsBornAfterYear(alignment, year);
+            #region test data
 
+            const string Alignment = "Neutral";
+            const int Year = 1900;
+
+            #endregion
+
+            bool IsThereAreAligmentsBornAfterYear = new MongoHelper().IsThereAreAligmentsBornAfterYear(Alignment, Year);
             Assert.IsTrue(IsThereAreAligmentsBornAfterYear);
         }
     }

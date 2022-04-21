@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Lesson7
+namespace DataBases.Mongo
 {
     [BsonIgnoreExtraElements]
     public class User

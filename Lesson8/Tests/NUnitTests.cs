@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Pages.Entities;
 
 namespace Lesson8
 {
@@ -14,13 +15,13 @@ namespace Lesson8
         [Test]
         public void CheckThatLogoIsPresent()
         {
-            Assert.IsTrue(homePage.IsLogoPresent());
+            Assert.IsTrue(homePage.IsLogoDisplayed());
         }
 
-        [TestCase("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        [Test]
+        public void CheckThatTableOfContentsSectionContent()
         {
-            Assert.IsTrue(homePage.IsTableOfContentsContainsContent(content));
+            Assert.IsTrue(homePage.IsTableOfContentsContainsContent(Constants.ExpectedDocumentation));
         }
 
         [TearDown]

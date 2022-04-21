@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Pages.Entities;
 
 namespace Lesson8
 {
@@ -14,14 +15,13 @@ namespace Lesson8
         [TestMethod]
         public void CheckThatLogoIsPresent()
         {
-            Assert.IsTrue(homePage.IsLogoPresent());
+            Assert.IsTrue(homePage.IsLogoDisplayed());
         }
 
         [TestMethod]
-        [DataRow("Documentation")]
-        public void CheckThatTableOfContentsSectionContent(string content)
+        public void CheckThatTableOfContentsSectionContent()
         {
-            Assert.IsTrue(homePage.IsTableOfContentsContainsContent(content));
+            Assert.IsTrue(homePage.IsTableOfContentsContainsContent(Constants.ExpectedDocumentation));
         }
 
         [TestCleanup]

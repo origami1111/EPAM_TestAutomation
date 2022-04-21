@@ -1,27 +1,32 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using Pages.Entities;
-using Pages.Pages.Lesson8Pages;
 using System;
 
-namespace Lesson8
+namespace Tests.Tests
 {
-    public class BaseTest
+    [SetUpFixture]
+    public abstract class BaseTest
     {
-        protected ChromeDriver driver;
-        protected HomePage homePage;
+        protected IWebDriver driver;
 
-        protected void InitDriver()
+        [SetUp]
+        public void SetUp()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--no-sandbox", "start-maximized", "--incognito");
             driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(Constants.DefaultTimeToWait);
-            driver.Navigate().GoToUrl(Constants.XUnitUrl);
-
-            homePage = new HomePage(driver);
         }
 
-        public void QuitDriver()
+        public void NavigateBack()
+        {
+            driver.Navigate().Back();
+        }
+
+        [TearDown]
+        public void TearDown()
         {
             driver.Quit();
         }

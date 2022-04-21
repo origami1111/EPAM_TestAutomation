@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace Lesson7
+namespace DataBases.Mongo
 {
     public class MongoHelper
     {
